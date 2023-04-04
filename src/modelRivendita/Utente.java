@@ -1,6 +1,7 @@
 package modelRivendita;
 
 import java.io.Serializable;
+import java.util.*;
 import java.time.LocalDate;
 
 import javax.persistence.*;
@@ -20,8 +21,11 @@ public class Utente implements Serializable {
 	@Column(nullable = false, name="data_di_nascita")
 	private LocalDate dataDiNascita;
 	
-	@OneToOne
-	private Tessera tessera;
+	@OneToMany( mappedBy = "utente")
+	private List<Tessera> tessere=new ArrayList<Tessera>();
+
+	
+
 
 	public Utente() {
 		super();
@@ -33,7 +37,7 @@ public class Utente implements Serializable {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dataDiNascita = dataDiNascita;
-		this.tessera= tessera;
+		this.tessere.add(tessera) ;
 	}
 
 	public Utente(String nome, String cognome, LocalDate dataDiNascita, Tessera tessera) {
@@ -41,7 +45,11 @@ public class Utente implements Serializable {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dataDiNascita = dataDiNascita;
-		this.tessera= tessera;
+		this.tessere.add(tessera) ;
+	}
+
+	public List<Tessera> getTessere() {
+		return tessere;
 	}
 
 	public String getNome() {
