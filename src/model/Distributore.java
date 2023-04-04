@@ -1,5 +1,10 @@
 package model;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("Distributore Automatico")
 public class Distributore extends Venditore {
 	private Boolean statusAttivo;
 
@@ -11,6 +16,11 @@ public class Distributore extends Venditore {
 	public Distributore(Boolean statusAttivo, String indirizzo, Long id) {
 		super(id, indirizzo);
 		this.statusAttivo = statusAttivo;
+	}
+
+	public Distributore() {
+		super();
+
 	}
 
 	public Boolean getStatusAttivo() {

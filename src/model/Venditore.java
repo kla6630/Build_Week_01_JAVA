@@ -1,5 +1,6 @@
 package model;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "venditore")
+@DiscriminatorColumn(name = "Tipo di rivendita")
 //SUPERCLASSE//
 public abstract class Venditore {
 	@Id
@@ -31,6 +33,11 @@ public abstract class Venditore {
 	public Venditore(String indirizzo) {
 		super();
 		this.indirizzo = indirizzo;
+	}
+
+	public Venditore() {
+		super();
+
 	}
 
 	public String getIndirizzo() {

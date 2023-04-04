@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-
+@DiscriminatorColumn(name = "Titolo di Viaggio")
 public abstract class TitoloDiViaggio implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
