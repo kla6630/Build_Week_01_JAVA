@@ -1,10 +1,17 @@
 package modelRivendita;
 
 import java.io.Serializable;
-import java.util.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 @Entity
 @Table(name="utenti")
 public class Utente implements Serializable {
@@ -24,28 +31,24 @@ public class Utente implements Serializable {
 	@OneToMany( mappedBy = "utente")
 	private List<Tessera> tessere=new ArrayList<Tessera>();
 
-	
-
-
 	public Utente() {
 		super();
 	}
 
-	public Utente(Long id, String nome, String cognome, LocalDate dataDiNascita, Tessera tessera) {
+	public Utente(Long id, String nome, String cognome, LocalDate dataDiNascita) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dataDiNascita = dataDiNascita;
-		this.tessere.add(tessera) ;
+
 	}
 
-	public Utente(String nome, String cognome, LocalDate dataDiNascita, Tessera tessera) {
+	public Utente(String nome, String cognome, LocalDate dataDiNascita) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dataDiNascita = dataDiNascita;
-		this.tessere.add(tessera) ;
 	}
 
 	public List<Tessera> getTessere() {

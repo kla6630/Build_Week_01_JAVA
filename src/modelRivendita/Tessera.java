@@ -11,8 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,7 +27,7 @@ public class Tessera implements Serializable {
 	private LocalDate dataScadenza;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name= "utente_id")
+	@JoinColumn(name = "utente_id", nullable = false)
 	private Utente utente;
 	
 	
@@ -37,18 +35,20 @@ public class Tessera implements Serializable {
 	public Tessera() {
 		super();
 	}
-	public Tessera(Long id, LocalDate dataAttivazione) {
+
+	public Tessera(Long id, LocalDate dataAttivazione, Utente u) {
 		super();
 		this.id = id;
 		this.dataAttivazione = dataAttivazione;		
 		this.dataScadenza=LocalDate.of(dataAttivazione.getYear()+1, dataAttivazione.getMonth(),dataAttivazione.getDayOfMonth());
-
+		this.utente = u;
 	}
 
-	public Tessera(LocalDate dataAttivazione) {
+	public Tessera(LocalDate dataAttivazione, Utente u) {
 		super();
 		this.dataAttivazione = dataAttivazione;
 		this.dataScadenza=LocalDate.of(dataAttivazione.getYear()+1, dataAttivazione.getMonth(),dataAttivazione.getDayOfMonth());
+		this.utente = u;
 	}
 	
 
