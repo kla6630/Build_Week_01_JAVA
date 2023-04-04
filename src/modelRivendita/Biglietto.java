@@ -1,4 +1,4 @@
-package model;
+package modelRivendita;
 
 import java.time.LocalDate;
 
@@ -20,8 +20,8 @@ public class Biglietto extends TitoloDiViaggio {
 
 	}
 
-	public Biglietto(LocalDate dataEmissione, Boolean vidimato) {
-		super(dataEmissione);
+	public Biglietto(LocalDate dataEmissione, Boolean vidimato, Venditore venditore) {
+		super(dataEmissione, venditore);
 		this.vidimato = vidimato;
 	}
 

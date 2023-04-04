@@ -1,4 +1,4 @@
-package model;
+package modelRivendita;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package model;
+package modelRivendita;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -27,6 +28,8 @@ public class Tessera implements Serializable {
 	
 	@OneToOne(mappedBy="tessera") 
 	private Utente utente;
+	
+	
 	
 	public Tessera() {
 		super();

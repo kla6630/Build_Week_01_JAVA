@@ -1,36 +1,26 @@
 package utils;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 
 import dbconnection.DbConnection;
-import modelRivendita.Abbonamento;
-import modelRivendita.Biglietto;
-import modelRivendita.TitoloDiViaggio;
+import modelRivendita.Venditore;
 
-public class TitoliDiViaggioDAO {
+public class VenditoreDAO {
 
 	static EntityManager em = DbConnection.getEntityManagerFactory().createEntityManager();
 
 	// metodo che salva dentro le tabelle//
-	public static void save(TitoloDiViaggio tv) {
-
+	public static void save(Venditore v) {
 		try {
 			em.getTransaction().begin();
-
-			em.persist(tv);
-
+			em.persist(v);
 			em.getTransaction().commit();
 		} catch (Exception ex) {
 			em.getTransaction().rollback();
-
-			System.out.println("Errore di salvataggio: " + tv.getClass().getSimpleName());
-
+			System.out.println("Errore di salvataggio: " + v.getClass().getSimpleName());
 			ex.printStackTrace();
 		}
-		
-		
-
-	};
-
+	}
+	
+	
 }

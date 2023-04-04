@@ -1,4 +1,4 @@
-package model;
+package modelRivendita;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -26,32 +26,35 @@ public abstract class TitoloDiViaggio implements Serializable {
 
 	private LocalDate dataEmissione;
 
+	public TitoloDiViaggio(Long id, LocalDate dataEmissione,Venditore venditore) {
+		super();
+		this.id = id;
+		this.dataEmissione = dataEmissione;
+		this.venditore = venditore;
+	}
+	
+	public TitoloDiViaggio(LocalDate dataEmissione, Venditore venditore) {
+		super();
+		this.dataEmissione = dataEmissione;
+		this.venditore = venditore;
+	}
+	
+	public TitoloDiViaggio() {
+		
+	}
 	public LocalDate getDataEmissione() {
 		return dataEmissione;
 	}
 
 	public void setDataEmissione(LocalDate dataEmissione) {
 		this.dataEmissione = dataEmissione;
+	
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public TitoloDiViaggio(Long id, LocalDate dataEmissione) {
-		super();
-		this.id = id;
-		this.dataEmissione = dataEmissione;
-	}
-
-	public TitoloDiViaggio(LocalDate dataEmissione) {
-		super();
-		this.dataEmissione = dataEmissione;
-	}
-
-	public TitoloDiViaggio() {
-
-	}
 
 	@Override
 	public String toString() {

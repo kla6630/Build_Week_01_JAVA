@@ -1,4 +1,4 @@
-package model;
+package modelRivendita;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -27,19 +27,21 @@ public class Utente implements Serializable {
 		super();
 	}
 
-	public Utente(Long id, String nome, String cognome, LocalDate dataDiNascita) {
+	public Utente(Long id, String nome, String cognome, LocalDate dataDiNascita, Tessera tessera) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dataDiNascita = dataDiNascita;
+		this.tessera= tessera;
 	}
 
-	public Utente(String nome, String cognome, LocalDate dataDiNascita) {
+	public Utente(String nome, String cognome, LocalDate dataDiNascita, Tessera tessera) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dataDiNascita = dataDiNascita;
+		this.tessera= tessera;
 	}
 
 	public String getNome() {
