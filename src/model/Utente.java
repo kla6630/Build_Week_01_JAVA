@@ -4,14 +4,28 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.*;
-
+@Entity
+@Table(name="utenti")
 public class Utente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(nullable = false)
 	private String nome;
+	
+	@Column(nullable = false)
 	private String cognome;
+	
+	@Column(nullable = false, name="data_di_nascita")
 	private LocalDate dataDiNascita;
+	
+	@OneToOne
+	private Tessera tessera;
+
+	public Utente() {
+		super();
+	}
 
 	public Utente(Long id, String nome, String cognome, LocalDate dataDiNascita) {
 		super();
