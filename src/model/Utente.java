@@ -13,6 +13,21 @@ public class Utente implements Serializable {
 	private String cognome;
 	private LocalDate dataDiNascita;
 
+	public Utente(Long id, String nome, String cognome, LocalDate dataDiNascita) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dataDiNascita = dataDiNascita;
+	}
+
+	public Utente(String nome, String cognome, LocalDate dataDiNascita) {
+		super();
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dataDiNascita = dataDiNascita;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -39,21 +54,6 @@ public class Utente implements Serializable {
 
 	public Long getId() {
 		return id;
-	}
-
-	public Utente(Long id, String nome, String cognome, LocalDate dataDiNascita) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.cognome = cognome;
-		this.dataDiNascita = dataDiNascita;
-	}
-	
-	public Utente(String nome, String cognome, LocalDate dataDiNascita) {
-		super();
-		this.nome = nome;
-		this.cognome = cognome;
-		this.dataDiNascita = dataDiNascita;
 	}
 
 	@Override
