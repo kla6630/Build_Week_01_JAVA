@@ -2,19 +2,19 @@ package modelRivendita;
 
 import java.time.LocalDate;
 
-import javax.persistence.DiscriminatorValue;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-@DiscriminatorValue("Biglietto")
+//@DiscriminatorValue("Biglietto")
+@Table(name = "biglietti")
 public class Biglietto extends TitoloDiViaggio {
 
 	private Boolean vidimato = false;
 
-	public Biglietto(Boolean vidimato) {
-		super();
-		this.vidimato = vidimato;
-	}
+	@Column(name = "data_vidimazione")
+	private LocalDate dataVidimazione;
 
 	public Biglietto() {
 
@@ -22,6 +22,11 @@ public class Biglietto extends TitoloDiViaggio {
 
 	public Biglietto(LocalDate dataEmissione, Boolean vidimato, Venditore venditore) {
 		super(dataEmissione, venditore);
+		this.vidimato = vidimato;
+	}
+
+	public Biglietto(Long id, LocalDate dataEmissione, Boolean vidimato, Venditore venditore) {
+		super(id, dataEmissione, venditore);
 		this.vidimato = vidimato;
 	}
 
@@ -33,9 +38,15 @@ public class Biglietto extends TitoloDiViaggio {
 		this.vidimato = vidimato;
 	}
 
+	public void vidimaBiglietto(LocalDate data) {
+		this.dataVidimazione = data;
+		this.vidimato = true;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Biglietto [vidimato=" + vidimato + "]";
+		return "Biglietto [vidimato=" + vidimato + ", dataVidimazione = " + dataVidimazione + "]";
 	}
 
 }

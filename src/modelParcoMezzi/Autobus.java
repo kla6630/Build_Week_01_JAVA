@@ -11,9 +11,12 @@ public class Autobus  extends Mezzi{
 	
 	private Integer Capienza=60;
 
-	public Autobus(Boolean inServizio, LocalDate dataInizio, LocalDate dataFine, Integer capienza) {
+	public Autobus(Boolean inServizio, LocalDate dataInizio, LocalDate dataFine) {
 		super(inServizio, dataInizio, dataFine);
-		Capienza = capienza;
+	}
+
+	public Autobus(Long id, Boolean inServizio, LocalDate dataInizio, LocalDate dataFine) {
+		super(id, inServizio, dataInizio, dataFine);
 	}
 
 	public Autobus() {

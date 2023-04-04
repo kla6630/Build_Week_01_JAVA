@@ -30,8 +30,6 @@ public class Tessera implements Serializable {
 	@JoinColumn(name = "utente_id", nullable = false)
 	private Utente utente;
 	
-	
-	
 	public Tessera() {
 		super();
 	}
@@ -75,7 +73,9 @@ public class Tessera implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Tessera [id=" + id + ", dataAttivazione=" + dataAttivazione + ", dataScadenza=" + dataScadenza + "]";
+		return "Tessera [id=" + id + ", dataAttivazione=" + dataAttivazione + ", dataScadenza=" + dataScadenza
+				+ ", utente=" + utente + "]";
 	}
+
 
 }
