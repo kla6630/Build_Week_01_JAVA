@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import dbconnection.DbConnection;
+import model.Abbonamento;
+import model.Biglietto;
 import model.TitoloDiViaggio;
 
 public class TitoliDiViaggioDAO {
@@ -25,8 +27,9 @@ public class TitoliDiViaggioDAO {
 			System.out.println("Errore di salvataggio: " + tv.getClass().getSimpleName());
 
 			ex.printStackTrace();
-
 		}
+		
+		
 
 	};
 

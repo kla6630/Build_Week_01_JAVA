@@ -25,8 +25,7 @@ public class Tessera implements Serializable {
 	@Column(name ="data_scadenza",nullable = false) 
 	private LocalDate dataScadenza;
 	
-	@OneToOne(mappedBy="tessera")
-	@Column(nullable = false) 
+	@OneToOne(mappedBy="tessera") 
 	private Utente utente;
 	
 	public Tessera() {

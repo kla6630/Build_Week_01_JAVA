@@ -4,7 +4,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("Distributore Automatico")
+@DiscriminatorValue("Distributore_automatico")
 public class Distributore extends Venditore {
 	private Boolean statusAttivo;
 

@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue("Rivenditore Fisico")
 public class RivenditoreFisico extends Venditore {
 
-<<<<<<< Updated upstream
+
 	public RivenditoreFisico(String indirizzo) {
 		super(indirizzo);
 
@@ -23,7 +23,7 @@ public class RivenditoreFisico extends Venditore {
 		return "RivenditoreFisico [getIndirizzo()=" + getIndirizzo() + ", getId()=" + getId() + ", toString()="
 				+ super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
 	}
-=======
->>>>>>> Stashed changes
+
+
 
 }

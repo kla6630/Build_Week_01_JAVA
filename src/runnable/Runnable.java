@@ -7,6 +7,7 @@ import model.Abbonamento;
 import model.Biglietto;
 import model.Distributore;
 import model.RivenditoreFisico;
+/*import utils.TitoliDiViaggioDAO;*/
 import utils.TitoliDiViaggioDAO;
 
 public class Runnable {
@@ -26,10 +27,10 @@ public class Runnable {
 		RivenditoreFisico rF02 = new RivenditoreFisico("Via dei Russi 225, Mariupol");
 
 		
-		//TitoliDiViaggioDAO.save(bg01);
-		//TitoliDiViaggioDAO.save(bg02);
-		//TitoliDiViaggioDAO.save(ab01);
-		//TitoliDiViaggioDAO.save(ab02);
+		TitoliDiViaggioDAO.save(bg01);
+		TitoliDiViaggioDAO.save(bg02);
+		TitoliDiViaggioDAO.save(ab01);
+		TitoliDiViaggioDAO.save(ab02);
 	}
 
 }

@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "Titolo di Viaggio")
+@DiscriminatorColumn(name = "Titolo_di_Viaggio")
 public abstract class TitoloDiViaggio implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

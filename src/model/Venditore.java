@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "venditore")
-@DiscriminatorColumn(name = "Tipo di rivendita")
+@DiscriminatorColumn(name = "Tipo_di_rivendita")
 //SUPERCLASSE//
 public abstract class Venditore {
 	@Id
