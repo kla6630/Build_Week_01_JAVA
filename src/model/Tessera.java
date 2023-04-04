@@ -3,17 +3,35 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="tessere")
 public class Tessera implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column (name="data_attivazione", nullable=false)
 	private LocalDate dataAttivazione;
+	
+	@Column(name ="data_scadenza",nullable = false) 
 	private LocalDate dataScadenza;
-
+	
+	@OneToOne(mappedBy="tessera")
+	@Column(nullable = false) 
+	private Utente utente;
+	
+	public Tessera() {
+		super();
+	}
 	public Tessera(Long id, LocalDate dataAttivazione, LocalDate dataScadenza) {
 		super();
 		this.id = id;
@@ -26,7 +44,9 @@ public class Tessera implements Serializable {
 		this.dataAttivazione = dataAttivazione;
 		this.dataScadenza = dataScadenza;
 	}
+	
 
+	
 	public LocalDate getDataAttivazione() {
 		return dataAttivazione;
 	}
