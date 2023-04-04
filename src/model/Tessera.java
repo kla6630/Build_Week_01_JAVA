@@ -32,17 +32,18 @@ public class Tessera implements Serializable {
 	public Tessera() {
 		super();
 	}
-	public Tessera(Long id, LocalDate dataAttivazione, LocalDate dataScadenza) {
+	public Tessera(Long id, LocalDate dataAttivazione) {
 		super();
 		this.id = id;
-		this.dataAttivazione = dataAttivazione;
-		this.dataScadenza = dataScadenza;
+		this.dataAttivazione = dataAttivazione;		
+		this.dataScadenza=LocalDate.of(dataAttivazione.getYear()+1, dataAttivazione.getMonth(),dataAttivazione.getDayOfMonth());
+
 	}
 
-	public Tessera(LocalDate dataAttivazione, LocalDate dataScadenza) {
+	public Tessera(LocalDate dataAttivazione) {
 		super();
 		this.dataAttivazione = dataAttivazione;
-		this.dataScadenza = dataScadenza;
+		this.dataScadenza=LocalDate.of(dataAttivazione.getYear()+1, dataAttivazione.getMonth(),dataAttivazione.getDayOfMonth());
 	}
 	
 
