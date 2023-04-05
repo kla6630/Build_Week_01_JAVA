@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 
 import dbconnection.DbConnection;
 import enums.DurataAbbonamento;
-import modelParcoMezzi.Mezzi;
 import modelRivendita.Abbonamento;
 import modelRivendita.Biglietto;
 import modelRivendita.Distributore;
