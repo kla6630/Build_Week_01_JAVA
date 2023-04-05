@@ -1,14 +1,12 @@
 package utils;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import dbconnection.DbConnection;
-import modelRivendita.Abbonamento;
+import gestionemezzi.MezziDiTrasporto;
 import modelRivendita.Biglietto;
 import modelRivendita.TitoloDiViaggio;
 import modelRivendita.Venditore;
@@ -30,6 +28,25 @@ public class TitoliDiViaggioDAO {
 		}
 	}
 	
+	public static void vidimaBiglietto(Biglietto bi, LocalDate data, MezziDiTrasporto mezzo) {
+		try {
+			em.getTransaction().begin();
+			Biglietto b = em.find(Biglietto.class, bi.getId());
+
+			if (b != null) {
+				b.vidimaBiglietto(LocalDate.now());
+				em.getTransaction().commit();
+				System.out.println("biglietto vidimato");
+			} else
+				throw new Exception("biglietto non trovato");
+
+		} catch (Exception ex) {
+			em.getTransaction().rollback();
+			System.out.println("errore vidima biglietto" + ex.getMessage());
+			ex.printStackTrace();
+		}
+	}
+
 	//<<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN ELEMENTO PER ID>>>>>>>>>>>>>>>>>>>
     public static TitoloDiViaggio getById(Long id){
     	try {

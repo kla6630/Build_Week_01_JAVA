@@ -5,16 +5,8 @@ import java.time.LocalDate;
 import javax.persistence.EntityManager;
 
 import dbconnection.DbConnection;
-import enums.DurataAbbonamento;
-import gestionemezzi.MezziDiTrasporto;
-import gestionemezzi.TipoMezzi;
-import modelRivendita.Abbonamento;
 import modelRivendita.Biglietto;
 import modelRivendita.Distributore;
-import modelRivendita.RivenditoreFisico;
-import modelRivendita.Tessera;
-import modelRivendita.TitoloDiViaggio;
-import modelRivendita.Utente;
 import modelRivendita.Venditore;
 import utils.MezziDAO;
 import utils.TesseraDAO;
@@ -89,6 +81,16 @@ public class Runnable {
 		//<<<<<<<<<<<<<<<<<<<METODO CHE CONTA GLI ABBONAMENTI IN BASE AL VENDITORE>>>>>>>>>>>>>>>>>>>
 		TitoliDiViaggioDAO.contaAbbonamentiDaVenditore(LocalDate.of(2022, 12, 10), LocalDate.of(2023, 4, 20), ven1);
 		
+		Distributore v = em.find(Distributore.class, 1L);
+
+		Biglietto bg01 = new Biglietto(LocalDate.of(2021, 12, 20), false, v);
+
+//		MezziDiTrasporto m = new MezziDiTrasporto();
+//
+//		MezziDAO.save(m);
+//		TitoliDiViaggioDAO.save(bg01);
+//
+//		TitoliDiViaggioDAO.vidimaBiglietto(bg01, LocalDate.now(), m);
 	}
 
 }
