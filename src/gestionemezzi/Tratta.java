@@ -42,10 +42,19 @@ public class Tratta {
 		this.durataTratta = durataTratta;
 	}
 	
-	@Override
-	public String toString() {
-		return partenza.toString() + " - " + arrivi.toString() + ", Durata viaggio=" + durataTratta + "h";
-		
+	public Tratta(int id, Partenze partenza, Arrivi arrivi, int durataTratta, List<MezziDiTrasporto> mezzo) {
+		super();
+		this.id = id;
+		this.partenza = partenza;
+		this.arrivi = arrivi;
+		this.durataTratta = durataTratta;
+		this.mezzo = mezzo;
+	}
+	
+
+	
+	public Tratta() {
+		super();
 	}
 
 	public int getId() {
@@ -95,4 +104,14 @@ public class Tratta {
 	
 	
 	
+	
+
+
+
+
+	@Override
+	public String toString() {
+		return partenza.toString() + " - " + arrivi.toString() + ", Durata viaggio=" + durataTratta + "h";
+		
+	}
 }
