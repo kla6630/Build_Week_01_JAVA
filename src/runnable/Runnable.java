@@ -139,6 +139,15 @@ public class Runnable {
 //		TitoliDiViaggioDAO.save(bg01);
 //
 //		TitoliDiViaggioDAO.vidimaBiglietto(bg01, LocalDate.now(), m);
+		
+		
+		MezziDAO.selectTratta(1);
+		
+		
+		
+		
+		
+		
 	}
 
 }

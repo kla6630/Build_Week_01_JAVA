@@ -45,7 +45,7 @@ public class MezziDiTrasporto {
 		this.tipoMezzi = tipoMezzi;
 		this.tratta = tratta;
 		this.oraPartenza = oraPartenza;
-		this.oraArrivo = oraPartenza.plusHours(tratta.getTratta().getDurataTratta());
+		this.oraArrivo = oraPartenza.plusHours(tratta.getDurataTratta());
 		this.servizio = servizio;
 	}
 

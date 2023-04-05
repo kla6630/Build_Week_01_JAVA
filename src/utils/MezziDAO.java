@@ -21,6 +21,7 @@ public class MezziDAO {
 			em.getTransaction().begin();
 			em.persist(mz);
 			em.getTransaction().commit();
+			System.out.println("Ho slavato");
 		} catch (Exception ex) {
 			em.getTransaction().rollback();
 			System.out.println("Errore di salvataggio: " + mz.getClass().getSimpleName());
@@ -65,7 +66,7 @@ public class MezziDAO {
 
 	// SELEZIONA LA TRATTA DA ESEGUIRE
 
-	public static void selectTratta(String codice) {
+	public static void selectTratta(int codice) {
 		Scanner in = new Scanner(System.in);
 		int i;
 		Partenze primo = null;
@@ -137,7 +138,7 @@ public class MezziDAO {
 		in.close();
 	}
 
-	private static void getMezzoByTratta(Partenze primo, Arrivi secondo, String codice) {
+	private static void getMezzoByTratta(Partenze primo, Arrivi secondo, int codice) {
 		// TODO Auto-generated method stub
 
 	}
@@ -147,6 +148,7 @@ public class MezziDAO {
 			em.getTransaction().begin();
 			em.persist(tr);
 			em.getTransaction().commit();
+			System.out.println("Ho salvato");
 		} catch (Exception ex) {
 			em.getTransaction().rollback();
 			System.out.println("Errore di salvataggio: " + tr.getClass().getSimpleName());

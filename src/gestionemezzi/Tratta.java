@@ -99,10 +99,7 @@ public class Tratta {
 		this.mezzo = mezzo;
 	}
 
-	public Tratta getTratta() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	
 	
