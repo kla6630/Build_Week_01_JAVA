@@ -36,12 +36,14 @@ public class Runnable {
 		Tratta padova_torino = new Tratta(Partenze.PADOVA, Arrivi.TORINO, 1);
 		Tratta milano_venezia = new Tratta(Partenze.MILANO, Arrivi.VENEZIA, 4);
 		
+	
+		
 		MezziDiTrasporto bus1 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_genova, LocalTime.of(10, 30), true);
 		MezziDiTrasporto bus2 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_napoli, LocalTime.of(10, 30), false);
 		MezziDiTrasporto bus3 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_bologna, LocalTime.of(10, 30), true);
-		MezziDiTrasporto tram1 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, firenze_venezia, LocalTime.of(11, 30), false);
-		MezziDiTrasporto tram2 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, padova_torino, LocalTime.of(10, 30), true);
-		MezziDiTrasporto tram3 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, milano_venezia, LocalTime.of(10, 30), false);
+		MezziDiTrasporto tram1 = new MezziDiTrasporto(TipoMezzi.TRAM, firenze_venezia, LocalTime.of(11, 30), false);
+		MezziDiTrasporto tram2 = new MezziDiTrasporto(TipoMezzi.TRAM, padova_torino, LocalTime.of(10, 30), true);
+		MezziDiTrasporto tram3 = new MezziDiTrasporto(TipoMezzi.TRAM, milano_venezia, LocalTime.of(10, 30), false);
 		
 		
 		
@@ -81,7 +83,7 @@ public class Runnable {
 //		TitoliDiViaggioDAO.save(ab01);
 //		TitoliDiViaggioDAO.save(ab02);
 		
-		
+	/*	
 		MezziDAO.saveTratta(milano_venezia);
 		MezziDAO.saveTratta(padova_torino);
 		MezziDAO.saveTratta(firenze_venezia);
@@ -89,16 +91,16 @@ public class Runnable {
 		MezziDAO.saveTratta(como_napoli);
 		MezziDAO.saveTratta(como_genova);
 		
-		
+	*/	
 		
 		MezziDAO.save(tram3);
 		MezziDAO.save(tram2);
 		MezziDAO.save(tram1);
-		MezziDAO.save(bus1);
-		MezziDAO.save(bus2);
-		MezziDAO.save(bus3);
+		//MezziDAO.save(bus1);
+		//MezziDAO.save(bus2);
+		//MezziDAO.save(bus3);
 		
-		
+	
 		
 		
 		

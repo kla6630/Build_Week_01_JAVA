@@ -63,6 +63,18 @@ public class MezziDAO {
 			bi.setVidimato(true);
 		}
 	}
+	
+	
+	// INSERIMENTO TRATTA E MEZZO DATABASE
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// SELEZIONA LA TRATTA DA ESEGUIRE
 
