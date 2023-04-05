@@ -3,6 +3,7 @@ package utils;
 import javax.persistence.EntityManager;
 
 import dbconnection.DbConnection;
+import modelParcoMezzi.Mezzi;
 import modelRivendita.Venditore;
 
 public class VenditoreDAO {
@@ -22,5 +23,21 @@ public class VenditoreDAO {
 		}
 	}
 	
+	
+	//<<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN ELEMENTO PER ID>>>>>>>>>>>>>>>>>>>
+    public static Venditore getById(Long id){
+    	try {
+  		em.getTransaction().begin();
+  		Venditore e = em.find(Venditore.class, id);
+  		em.getTransaction().commit();
+  		System.out.println(e);
+  		return e;
+    	} catch (Exception ex) {
+			em.getTransaction().rollback();
+			System.out.println("Errore di ricerca: ");
+			ex.printStackTrace();
+			return null;
+		}
+  	}
 	
 }
