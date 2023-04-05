@@ -32,4 +32,19 @@ public class MezziDAO {
 			bi.setVidimato(true);
 		}
 	}
-}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	}
+	
+	
+	
+	
+	
