@@ -60,4 +60,18 @@ public class MezziDAO {
 		}
 	}
 
+	// <<<<<<<<<<<<<<<<<<<METODO CHE AGGIUNGE UN MEZZO ALLA
+	// TABELLA>>>>>>>>>>>>>>>>>>>
+	public static void modificaServizio(MezziDiTrasporto mz) {
+		try {
+			em.getTransaction().begin();
+			mz.setServizio(false);
+			em.getTransaction().commit();
+		} catch (Exception ex) {
+			em.getTransaction().rollback();
+			System.out.println("Errore di salvataggio: " + mz.getClass().getSimpleName());
+			ex.printStackTrace();
+		}
+	}
+
 }
