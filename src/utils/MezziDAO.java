@@ -1,6 +1,7 @@
 package utils;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import javax.persistence.EntityManager;
@@ -63,6 +64,32 @@ public class MezziDAO {
 			bi.setVidimato(true);
 		}
 	}
+	public static void cambioServizio(MezziDiTrasporto tr) {
+		
+
+		try {
+			em.getTransaction().begin();
+			MezziDiTrasporto tra=em.find(MezziDiTrasporto.class, tr.getId());
+			
+
+			if (tra != null) {
+				System.out.println(tra);
+				tra.setDataCambio(LocalDate.now());
+				tra.setServizio(!tra.isServizio());
+				em.getTransaction().commit();
+				System.out.println(tra);
+				System.out.println("Stato servizio cambiato");
+			} else
+				throw new Exception("Mezzo non trovato");
+
+		} catch (Exception ex) {
+			em.getTransaction().rollback();
+			System.out.println("errore cambio servizio" + ex.getMessage());
+			ex.printStackTrace();
+		}
+		
+	}
+
 
 	// SELEZIONA LA TRATTA DA ESEGUIRE
 

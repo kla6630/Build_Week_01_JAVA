@@ -1,5 +1,6 @@
 package gestionemezzi;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.CascadeType;
@@ -39,6 +40,9 @@ public class MezziDiTrasporto {
 	private LocalTime oraArrivo;
 	private boolean servizio;
 	private int traccia;
+	LocalDate dataCambio;
+
+	
 
 	public MezziDiTrasporto(TipoMezzi tipoMezzi, Tratta tratta, LocalTime oraPartenza, boolean servizio) {
 		super();
@@ -62,6 +66,14 @@ public class MezziDiTrasporto {
 
 	public MezziDiTrasporto() {
 		super();
+	}
+	
+	public LocalDate getDataCambio() {
+		return dataCambio;
+	}
+
+	public void setDataCambio(LocalDate dataCambio) {
+		this.dataCambio = dataCambio;
 	}
 
 	public TipoMezzi getTipoMezzi() {

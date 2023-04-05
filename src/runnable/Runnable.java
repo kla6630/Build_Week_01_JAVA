@@ -108,7 +108,7 @@ public class Runnable {
 		TitoliDiViaggioDAO.getById(1l);
 		
 		//<<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN MEZZO PER ID>>>>>>>>>>>>>>>>>>>
-		MezziDAO.getById(1l);
+		MezziDiTrasporto myMezzo=MezziDAO.getById(1l);
 		
 		//<<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN VENDITORE PER ID>>>>>>>>>>>>>>>>>>>
 		Venditore ven1 =VenditoreDAO.getById(1l);
@@ -131,7 +131,7 @@ public class Runnable {
 		
 		Distributore v = em.find(Distributore.class, 1L);
 
-		Biglietto bg01 = new Biglietto(LocalDate.of(2021, 12, 20), false, v);
+		//Biglietto bg01 = new Biglietto(LocalDate.of(2021, 12, 20), false, v);
 
 //		MezziDiTrasporto m = new MezziDiTrasporto();
 //
@@ -141,7 +141,8 @@ public class Runnable {
 //		TitoliDiViaggioDAO.vidimaBiglietto(bg01, LocalDate.now(), m);
 		
 		
-		MezziDAO.selectTratta(1);
+		//MezziDAO.selectTratta(1);
+		MezziDAO.cambioServizio(myMezzo);
 		
 		
 		
