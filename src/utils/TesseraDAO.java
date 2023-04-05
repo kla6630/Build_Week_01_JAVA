@@ -3,7 +3,6 @@ package utils;
 import javax.persistence.EntityManager;
 
 import dbconnection.DbConnection;
-import modelParcoMezzi.Mezzi;
 import modelRivendita.Tessera;
 
 public class TesseraDAO {

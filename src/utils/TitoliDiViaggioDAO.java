@@ -8,7 +8,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import dbconnection.DbConnection;
-import modelParcoMezzi.Mezzi;
 import modelRivendita.Abbonamento;
 import modelRivendita.Biglietto;
 import modelRivendita.TitoloDiViaggio;
