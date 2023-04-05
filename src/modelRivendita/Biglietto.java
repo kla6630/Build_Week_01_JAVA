@@ -38,9 +38,13 @@ public class Biglietto extends TitoloDiViaggio {
 		this.vidimato = vidimato;
 	}
 
-	public void vidimaBiglietto(LocalDate data) {
+	public void vidimaBiglietto(LocalDate data) throws Exception {
 		this.dataVidimazione = data;
-		this.vidimato = true;
+		if (!this.vidimato)
+			this.vidimato = true;
+		else {
+			throw new Exception("biglietto già vidimato");
+		}
 	}
 
 
