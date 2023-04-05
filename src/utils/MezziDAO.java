@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 
 import dbconnection.DbConnection;
 import modelParcoMezzi.Mezzi;
-import modelRivendita.Biglietto;
 
 
 public class MezziDAO {
@@ -23,13 +22,5 @@ public class MezziDAO {
 		}
 	}
 	
-	//<<<<<<<<<<<<<<<<<<<<<METODO CHE CONTA I BIGLIETTI VIDIMATI>>>>>>>>>>>>>>>>>>>>>
-	public static void vidimaBiglietto(Biglietto bi) {
-		Integer numVidimati=0;
-		
-		if(bi.getVidimato()) {
-			numVidimati+=1;
-			bi.setVidimato(true);
-		}
-	}
+
 }

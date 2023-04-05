@@ -9,6 +9,7 @@ public class DbConnection {
 	static {
 		try {
 			entityManagerFactory = Persistence.createEntityManagerFactory("trasporti_db");
+
 		} catch (Throwable ex) {
 			System.err.println("Initial EntityManagerFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);
