@@ -19,4 +19,20 @@ public class TesseraDAO {
 			ex.printStackTrace();
 		}
 	}
+	
+	//<<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN ELEMENTO PER ID>>>>>>>>>>>>>>>>>>>
+    public static Tessera getById(Long id){
+    	try {
+  		em.getTransaction().begin();
+  		Tessera e = em.find(Tessera.class, id);
+  		em.getTransaction().commit();
+  		System.out.println(e);
+  		return e;
+    	} catch (Exception ex) {
+			em.getTransaction().rollback();
+			System.out.println("Errore di ricerca: ");
+			ex.printStackTrace();
+			return null;
+		}
+  	}
 }

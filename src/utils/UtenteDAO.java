@@ -21,4 +21,20 @@ public class UtenteDAO {
 		}
 
 	}
+	
+	//<<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN ELEMENTO PER ID>>>>>>>>>>>>>>>>>>>
+    public static Utente getById(Long id){
+    	try {
+  		em.getTransaction().begin();
+  		Utente e = em.find(Utente.class, id);
+  		em.getTransaction().commit();
+  		System.out.println(e);
+  		return e;
+    	} catch (Exception ex) {
+			em.getTransaction().rollback();
+			System.out.println("Errore di ricerca: ");
+			ex.printStackTrace();
+			return null;
+		}
+  	}
 }
