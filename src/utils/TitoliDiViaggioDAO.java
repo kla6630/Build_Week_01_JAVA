@@ -1,6 +1,7 @@
 package utils;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -28,13 +29,13 @@ public class TitoliDiViaggioDAO {
 		}
 	}
 	
-	public static void vidimaBiglietto(Biglietto bi, LocalDate data, MezziDiTrasporto mezzo) {
+	public static void vidimaBiglietto(Biglietto bi, LocalDateTime data, MezziDiTrasporto mezzo) {
 		try {
 			em.getTransaction().begin();
 			Biglietto b = em.find(Biglietto.class, bi.getId());
 
 			if (b != null) {
-				b.vidimaBiglietto(LocalDate.now());
+				b.vidimaBiglietto(data, mezzo);
 				em.getTransaction().commit();
 				System.out.println("biglietto vidimato");
 			} else
