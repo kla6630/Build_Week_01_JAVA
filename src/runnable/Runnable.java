@@ -1,10 +1,16 @@
 package runnable;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.EntityManager;
 
 import dbconnection.DbConnection;
+import enums.Arrivi;
+import enums.Partenze;
+import enums.TipoMezzi;
+import gestionemezzi.MezziDiTrasporto;
+import gestionemezzi.Tratta;
 import modelRivendita.Biglietto;
 import modelRivendita.Distributore;
 import modelRivendita.Venditore;
@@ -19,7 +25,26 @@ public class Runnable {
 	static EntityManager em = DbConnection.getEntityManagerFactory().createEntityManager();
 
 	public static void main(String[] args) {
-
+		
+		
+		Tratta como_genova = new Tratta(Partenze.COMO, Arrivi.GENOVA, 2);
+		Tratta como_napoli = new Tratta(Partenze.COMO, Arrivi.NAPOLI, 4);
+		Tratta como_bologna = new Tratta(Partenze.COMO, Arrivi.BOLOGNA, 2);
+		
+		
+		Tratta firenze_venezia = new Tratta(Partenze.FIRENZE, Arrivi.VENEZIA, 4);
+		Tratta padova_torino = new Tratta(Partenze.PADOVA, Arrivi.TORINO, 1);
+		Tratta milano_venezia = new Tratta(Partenze.MILANO, Arrivi.VENEZIA, 4);
+		
+		MezziDiTrasporto bus1 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_genova, LocalTime.of(10, 30), true);
+		MezziDiTrasporto bus2 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_napoli, LocalTime.of(10, 30), false);
+		MezziDiTrasporto bus3 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_bologna, LocalTime.of(10, 30), true);
+		MezziDiTrasporto tram1 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, firenze_venezia, LocalTime.of(11, 30), false);
+		MezziDiTrasporto tram2 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, padova_torino, LocalTime.of(10, 30), true);
+		MezziDiTrasporto tram3 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, milano_venezia, LocalTime.of(10, 30), false);
+		
+		
+		
 //		Distributore dist01 = new Distributore(true, "Via dei Suricati 25, Tenerife");
 //		Distributore dist02 = new Distributore(false, "Via dei Giudei 225, Otranto");
 //
@@ -55,6 +80,29 @@ public class Runnable {
 //		TitoliDiViaggioDAO.save(bg02);
 //		TitoliDiViaggioDAO.save(ab01);
 //		TitoliDiViaggioDAO.save(ab02);
+		
+		
+		MezziDAO.saveTratta(milano_venezia);
+		MezziDAO.saveTratta(padova_torino);
+		MezziDAO.saveTratta(firenze_venezia);
+		MezziDAO.saveTratta(como_bologna);
+		MezziDAO.saveTratta(como_napoli);
+		MezziDAO.saveTratta(como_genova);
+		
+		
+		
+		MezziDAO.save(tram3);
+		MezziDAO.save(tram2);
+		MezziDAO.save(tram1);
+		MezziDAO.save(bus1);
+		MezziDAO.save(bus2);
+		MezziDAO.save(bus3);
+		
+		
+		
+		
+		
+		
 		
 		//<<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN TITOLODIVIAGGIO PER ID>>>>>>>>>>>>>>>>>>>
 		TitoliDiViaggioDAO.getById(1l);

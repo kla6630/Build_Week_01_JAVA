@@ -5,9 +5,10 @@ import java.util.Scanner;
 
 import javax.persistence.EntityManager;
 import dbconnection.DbConnection;
-import gestionemezzi.Arrivi;
+import enums.Arrivi;
+import enums.Partenze;
 import gestionemezzi.MezziDiTrasporto;
-import gestionemezzi.Partenze;
+import gestionemezzi.Tratta;
 import modelRivendita.Biglietto;
 import modelRivendita.TitoloDiViaggio;
 
@@ -153,5 +154,19 @@ public class MezziDAO {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	public static void saveTratta(Tratta tr) {
+		try {
+			em.getTransaction().begin();
+			em.persist(tr);
+			em.getTransaction().commit();
+		} catch (Exception ex) {
+			em.getTransaction().rollback();
+			System.out.println("Errore di salvataggio: " + tr.getClass().getSimpleName());
+			ex.printStackTrace();
+		}
+	}
+	
+	
+	
 }

@@ -1,4 +1,4 @@
-package gestionemezzi;
+package enums;
 
 public enum TipoMezzi {
 

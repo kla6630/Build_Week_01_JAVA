@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import enums.TipoMezzi;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,7 +40,7 @@ public class MezziDiTrasporto {
 	private boolean servizio;
 	private int traccia;
 
-	public MezziDiTrasporto(TipoMezzi tipoMezzi, Tratta tratta, LocalTime oraPartenza, int capienza, boolean servizio) {
+	public MezziDiTrasporto(TipoMezzi tipoMezzi, Tratta tratta, LocalTime oraPartenza, boolean servizio) {
 		super();
 		this.tipoMezzi = tipoMezzi;
 		this.tratta = tratta;
@@ -48,8 +49,7 @@ public class MezziDiTrasporto {
 		this.servizio = servizio;
 	}
 
-	public MezziDiTrasporto(long id, TipoMezzi tipoMezzi, Tratta tratta, LocalTime oraPartenza, LocalTime oraArrivo,
-			int capienza, boolean servizio, int traccia) {
+	public MezziDiTrasporto(long id, TipoMezzi tipoMezzi, Tratta tratta, LocalTime oraPartenza, LocalTime oraArrivo, boolean servizio, int traccia) {
 		super();
 		this.id = id;
 		this.tipoMezzi = tipoMezzi;
