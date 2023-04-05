@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 
 import dbconnection.DbConnection;
 import enums.DurataAbbonamento;
+import gestionemezzi.MezziDiTrasporto;
+import gestionemezzi.TipoMezzi;
 import modelRivendita.Abbonamento;
 import modelRivendita.Biglietto;
 import modelRivendita.Distributore;
@@ -44,7 +46,7 @@ public class Runnable {
 //		Abbonamento ab01 = new Abbonamento(LocalDate.of(2022, 12, 20), ts01, DurataAbbonamento.MENSILE, rF01);
 //		Abbonamento ab02 = new Abbonamento(LocalDate.of(2023, 12, 20), ts02, DurataAbbonamento.SETTIMANALE, rF02);
 //
-		
+//		MezziDiTrasporto mz01 = new MezziDiTrasporto(TipoMezzi.AUTOBUS,,LocalDate.of(2022, 12, 20),);
 		
 //		UtenteDAO.save(ut01);
 //		UtenteDAO.save(ut02);
@@ -77,7 +79,6 @@ public class Runnable {
 		
 		//<<<<<<<<<<<<<<<<<<<METODO CHE CERCA UNA TESSERA PER ID>>>>>>>>>>>>>>>>>>>
 		TesseraDAO.getById(1l);
-		
 		
 		//<<<<<<<<<<<<<<<<<<<METODO CHE CONTA I TITOLI DI VIAGGIO IN BASE AL PERIODO>>>>>>>>>>>>>>>>>>>
 		TitoliDiViaggioDAO.contaTitoliDiViaggio(LocalDate.of(2022, 12, 10), LocalDate.of(2023, 4, 20));
