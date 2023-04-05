@@ -2,6 +2,8 @@ package gestionemezzi;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,37 +14,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import enums.TipoMezzi;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+import modelRivendita.Biglietto;
 
 @Table(name = "mezziditrasporto")
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 public class MezziDiTrasporto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
 	@Enumerated(EnumType.STRING)
 	private TipoMezzi tipoMezzi;
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "tratta_id", referencedColumnName = "id")
 	private Tratta tratta;
+
 	private LocalTime oraPartenza;
 	private LocalTime oraArrivo;
 	private boolean servizio;
 	private int traccia;
 	LocalDate dataCambio;
-
-	
 
 	public MezziDiTrasporto(TipoMezzi tipoMezzi, Tratta tratta, LocalTime oraPartenza, boolean servizio) {
 		super();
@@ -53,7 +54,8 @@ public class MezziDiTrasporto {
 		this.servizio = servizio;
 	}
 
-	public MezziDiTrasporto(long id, TipoMezzi tipoMezzi, Tratta tratta, LocalTime oraPartenza, LocalTime oraArrivo, boolean servizio, int traccia) {
+	public MezziDiTrasporto(long id, TipoMezzi tipoMezzi, Tratta tratta, LocalTime oraPartenza, LocalTime oraArrivo,
+			boolean servizio, int traccia) {
 		super();
 		this.id = id;
 		this.tipoMezzi = tipoMezzi;
@@ -61,13 +63,13 @@ public class MezziDiTrasporto {
 		this.oraPartenza = oraPartenza;
 		this.oraArrivo = oraArrivo;
 		this.servizio = servizio;
-		this.traccia = traccia;
+		// this.traccia = traccia;
 	}
 
 	public MezziDiTrasporto() {
 		super();
 	}
-	
+
 	public LocalDate getDataCambio() {
 		return dataCambio;
 	}
@@ -116,13 +118,13 @@ public class MezziDiTrasporto {
 		this.servizio = servizio;
 	}
 
-	public int getTraccia() {
-		return traccia;
-	}
-
-	public void setTraccia(int traccia) {
-		this.traccia = traccia;
-	}
+	// public int getTraccia() {
+	// return traccia;
+	// }
+	//
+	// public void setTraccia(int traccia) {
+	// this.traccia = traccia;
+	// }
 
 	public long getId() {
 		return id;

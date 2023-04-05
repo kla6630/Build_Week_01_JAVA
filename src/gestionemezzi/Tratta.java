@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import enums.Arrivi;
 import enums.Partenze;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -22,29 +21,28 @@ import lombok.Setter;
 @Table(name = "tratte")
 @Getter
 @Setter
-@NoArgsConstructor
 public class Tratta {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Enumerated(EnumType.STRING)
 	private Partenze partenza;
 	@Enumerated(EnumType.STRING)
 	private Arrivi arrivi;
-	private int durataTratta;
+	private Long durataTratta;
 	@OneToMany(mappedBy = "tratta")
 	private List<MezziDiTrasporto> mezzo;
 	
-	public Tratta(Partenze partenza, Arrivi arrivi, int durataTratta) {
+	public Tratta(Partenze partenza, Arrivi arrivi, Long durataTratta) {
 		super();
 		this.partenza = partenza;
 		this.arrivi = arrivi;
 		this.durataTratta = durataTratta;
 	}
 	
-	public Tratta(int id, Partenze partenza, Arrivi arrivi, int durataTratta, List<MezziDiTrasporto> mezzo) {
+	public Tratta(Long id, Partenze partenza, Arrivi arrivi, Long durataTratta, List<MezziDiTrasporto> mezzo) {
 		super();
 		this.id = id;
 		this.partenza = partenza;
@@ -59,11 +57,11 @@ public class Tratta {
 		super();
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -83,11 +81,11 @@ public class Tratta {
 		this.arrivi = arrivi;
 	}
 
-	public int getDurataTratta() {
+	public Long getDurataTratta() {
 		return durataTratta;
 	}
 
-	public void setDurataTratta(int durataTratta) {
+	public void setDurataTratta(Long durataTratta) {
 		this.durataTratta = durataTratta;
 	}
 
@@ -98,15 +96,6 @@ public class Tratta {
 	public void setMezzo(List<MezziDiTrasporto> mezzo) {
 		this.mezzo = mezzo;
 	}
-
-	
-	
-	
-	
-	
-
-
-
 
 	@Override
 	public String toString() {

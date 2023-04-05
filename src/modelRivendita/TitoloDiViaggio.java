@@ -3,6 +3,7 @@ package modelRivendita;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,7 @@ public abstract class TitoloDiViaggio implements Serializable {
 	@ManyToOne
 	private Venditore venditore;
 
+	@Column(name = "data_emissione")
 	private LocalDate dataEmissione;
 
 	public TitoloDiViaggio(Long id, LocalDate dataEmissione,Venditore venditore) {

@@ -1,22 +1,24 @@
 package utils;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 import javax.persistence.EntityManager;
+
 import dbconnection.DbConnection;
 import enums.Arrivi;
 import enums.Partenze;
 import gestionemezzi.MezziDiTrasporto;
 import gestionemezzi.Tratta;
 import modelRivendita.Biglietto;
-import modelRivendita.TitoloDiViaggio;
 
 public class MezziDAO {
 	static EntityManager em = DbConnection.getEntityManagerFactory().createEntityManager();
 
-	// <<<<<<<<<<<<<<<<<<<METODO CHE AGGIUNGE UN MEZZO ALLA TABELLA>>>>>>>>>>>>>>>>>>>
+	// <<<<<<<<<<<<<<<<<<<METODO CHE AGGIUNGE UN MEZZO ALLA
+	// TABELLA>>>>>>>>>>>>>>>>>>>
 	public static void save(MezziDiTrasporto mz) {
 		try {
 			em.getTransaction().begin();
@@ -46,6 +48,22 @@ public class MezziDAO {
 		}
 	}
 
+	// <<<<<<<<<<<<<<<<<<<METODO CHE CERCA UNA TRATTA PER ID>>>>>>>>>>>>>>>>>>>
+	public static Tratta getTrattaById(Long id) {
+		try {
+			em.getTransaction().begin();
+			Tratta e = em.find(Tratta.class, id);
+			em.getTransaction().commit();
+			System.out.println(e);
+			return e;
+		} catch (Exception ex) {
+			em.getTransaction().rollback();
+			System.out.println("Errore di ricerca: ");
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
 	// <<<<<<<<<<<<<<<<<<<<<<<<<< MODIFICA MEZZO >>>>>>>>>>>>>>>>>>>>>>>>>>
 	public static void updateEvento(MezziDiTrasporto mz) {
 		em.getTransaction().begin();
@@ -55,8 +73,9 @@ public class MezziDAO {
 		System.out.println(mz);
 	}
 
-	// <<<<<<<<<<<<<<<<<<<<<METODO CHE CONTA I BIGLIETTI VIDIMATI>>>>>>>>>>>>>>>>>>>>>
-	public static void vidimaBiglietto(Biglietto bi) {
+	// <<<<<<<<<<<<<<<<<<<<<METODO CHE CONTA I BIGLIETTI
+	// VIDIMATI>>>>>>>>>>>>>>>>>>>>>
+	public static void contaBigliettiVidimati(Biglietto bi) {
 		Integer numVidimati = 0;
 
 		if (bi.getVidimato()) {
@@ -64,13 +83,12 @@ public class MezziDAO {
 			bi.setVidimato(true);
 		}
 	}
+
 	public static void cambioServizio(MezziDiTrasporto tr) {
-		
 
 		try {
 			em.getTransaction().begin();
-			MezziDiTrasporto tra=em.find(MezziDiTrasporto.class, tr.getId());
-			
+			MezziDiTrasporto tra = em.find(MezziDiTrasporto.class, tr.getId());
 
 			if (tra != null) {
 				System.out.println(tra);
@@ -87,9 +105,8 @@ public class MezziDAO {
 			System.out.println("errore cambio servizio" + ex.getMessage());
 			ex.printStackTrace();
 		}
-		
-	}
 
+	}
 
 	// SELEZIONA LA TRATTA DA ESEGUIRE
 
@@ -107,24 +124,24 @@ public class MezziDAO {
 			i = in.nextInt();
 
 			switch (i) {
-			case 1:
-				primo = Partenze.COMO;
-				break;
-			case 2:
-				primo = Partenze.MILANO;
-				break;
-			case 3:
-				primo = Partenze.FIRENZE;
-				break;
-			case 4:
-				primo = Partenze.PADOVA;
-				break;
-			case 5:
-				primo = Partenze.ROMA;
-				break;
-			default:
-				System.out.println("ERROR. Numero selezionato errato!");
-				System.out.println("RISELEZIONE ATTIVATA");
+				case 1:
+					primo = Partenze.COMO;
+					break;
+				case 2:
+					primo = Partenze.MILANO;
+					break;
+				case 3:
+					primo = Partenze.FIRENZE;
+					break;
+				case 4:
+					primo = Partenze.PADOVA;
+					break;
+				case 5:
+					primo = Partenze.ROMA;
+					break;
+				default:
+					System.out.println("ERROR. Numero selezionato errato!");
+					System.out.println("RISELEZIONE ATTIVATA");
 			}
 		} while (i > 5 | i < 1);
 
@@ -140,24 +157,24 @@ public class MezziDAO {
 			z = in.nextInt();
 
 			switch (z) {
-			case 1:
-				secondo = Arrivi.NAPOLI;
-				break;
-			case 2:
-				secondo = Arrivi.BOLOGNA;
-				break;
-			case 3:
-				secondo = Arrivi.GENOVA;
-				break;
-			case 4:
-				secondo = Arrivi.TORINO;
-				break;
-			case 5:
-				secondo = Arrivi.VENEZIA;
-				break;
-			default:
-				System.out.println("ERROR. Numero selezionato errato!");
-				System.out.println("RISELEZIONE ATTIVATA");
+				case 1:
+					secondo = Arrivi.NAPOLI;
+					break;
+				case 2:
+					secondo = Arrivi.BOLOGNA;
+					break;
+				case 3:
+					secondo = Arrivi.GENOVA;
+					break;
+				case 4:
+					secondo = Arrivi.TORINO;
+					break;
+				case 5:
+					secondo = Arrivi.VENEZIA;
+					break;
+				default:
+					System.out.println("ERROR. Numero selezionato errato!");
+					System.out.println("RISELEZIONE ATTIVATA");
 			}
 		} while (z > 5 | z < 1);
 
@@ -169,7 +186,7 @@ public class MezziDAO {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	public static void saveTratta(Tratta tr) {
 		try {
 			em.getTransaction().begin();
@@ -182,7 +199,5 @@ public class MezziDAO {
 			ex.printStackTrace();
 		}
 	}
-	
-	
-	
+
 }
