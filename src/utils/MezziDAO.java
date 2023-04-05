@@ -1,6 +1,8 @@
 package utils;
 
 import java.sql.SQLException;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 import javax.persistence.EntityManager;
@@ -34,6 +36,21 @@ public class MezziDAO {
 		try {
 			em.getTransaction().begin();
 			MezziDiTrasporto e = em.find(MezziDiTrasporto.class, id);
+			em.getTransaction().commit();
+			System.out.println(e);
+			return e;
+		} catch (Exception ex) {
+			em.getTransaction().rollback();
+			System.out.println("Errore di ricerca: ");
+			ex.printStackTrace();
+			return null;
+		}
+	}
+	// <<<<<<<<<<<<<<<<<<<METODO CHE CERCA UNA TRATTA PER ID>>>>>>>>>>>>>>>>>>>
+	public static Tratta getTrattaById(Long id) {
+		try {
+			em.getTransaction().begin();
+			Tratta e = em.find(Tratta.class, id);
 			em.getTransaction().commit();
 			System.out.println(e);
 			return e;
@@ -155,7 +172,6 @@ public class MezziDAO {
 			ex.printStackTrace();
 		}
 	}
-	
-	
+
 	
 }

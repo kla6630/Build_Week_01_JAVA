@@ -7,12 +7,17 @@ import javax.persistence.EntityManager;
 
 import dbconnection.DbConnection;
 import enums.Arrivi;
+import enums.DurataAbbonamento;
 import enums.Partenze;
 import enums.TipoMezzi;
 import gestionemezzi.MezziDiTrasporto;
 import gestionemezzi.Tratta;
+import modelRivendita.Abbonamento;
 import modelRivendita.Biglietto;
 import modelRivendita.Distributore;
+import modelRivendita.RivenditoreFisico;
+import modelRivendita.Tessera;
+import modelRivendita.Utente;
 import modelRivendita.Venditore;
 import utils.MezziDAO;
 import utils.TesseraDAO;
@@ -26,25 +31,25 @@ public class Runnable {
 
 	public static void main(String[] args) {
 		
-		
-		Tratta como_genova = new Tratta(Partenze.COMO, Arrivi.GENOVA, 2);
-		Tratta como_napoli = new Tratta(Partenze.COMO, Arrivi.NAPOLI, 4);
-		Tratta como_bologna = new Tratta(Partenze.COMO, Arrivi.BOLOGNA, 2);
-		
-		
-		Tratta firenze_venezia = new Tratta(Partenze.FIRENZE, Arrivi.VENEZIA, 4);
-		Tratta padova_torino = new Tratta(Partenze.PADOVA, Arrivi.TORINO, 1);
-		Tratta milano_venezia = new Tratta(Partenze.MILANO, Arrivi.VENEZIA, 4);
-		
-		MezziDiTrasporto bus1 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_genova, LocalTime.of(10, 30), true);
-		MezziDiTrasporto bus2 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_napoli, LocalTime.of(10, 30), false);
-		MezziDiTrasporto bus3 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_bologna, LocalTime.of(10, 30), true);
-		MezziDiTrasporto tram1 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, firenze_venezia, LocalTime.of(11, 30), false);
-		MezziDiTrasporto tram2 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, padova_torino, LocalTime.of(10, 30), true);
-		MezziDiTrasporto tram3 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, milano_venezia, LocalTime.of(10, 30), false);
-		
-		
-		
+//		
+//		Tratta como_genova = new Tratta(Partenze.COMO, Arrivi.GENOVA, 2l);
+//		Tratta como_napoli = new Tratta(Partenze.COMO, Arrivi.NAPOLI, 4l);
+//		Tratta como_bologna = new Tratta(Partenze.COMO, Arrivi.BOLOGNA, 2l);
+//		
+//		
+//		Tratta firenze_venezia = new Tratta(Partenze.FIRENZE, Arrivi.VENEZIA, 4l);
+//		Tratta padova_torino = new Tratta(Partenze.PADOVA, Arrivi.TORINO, 1l);
+//		Tratta milano_venezia = new Tratta(Partenze.MILANO, Arrivi.VENEZIA, 4l);
+//		
+//		MezziDiTrasporto bus1 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_genova, LocalTime.of(10, 30), true);
+//		MezziDiTrasporto bus2 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_napoli, LocalTime.of(10, 30), false);
+//		MezziDiTrasporto bus3 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_bologna, LocalTime.of(10, 30), true);
+//		MezziDiTrasporto tram1 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, firenze_venezia, LocalTime.of(11, 30), false);
+//		MezziDiTrasporto tram2 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, padova_torino, LocalTime.of(10, 30), true);
+//		MezziDiTrasporto tram3 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, milano_venezia, LocalTime.of(10, 30), false);
+//		
+//		
+//		
 //		Distributore dist01 = new Distributore(true, "Via dei Suricati 25, Tenerife");
 //		Distributore dist02 = new Distributore(false, "Via dei Giudei 225, Otranto");
 //
@@ -63,8 +68,7 @@ public class Runnable {
 //		Abbonamento ab01 = new Abbonamento(LocalDate.of(2022, 12, 20), ts01, DurataAbbonamento.MENSILE, rF01);
 //		Abbonamento ab02 = new Abbonamento(LocalDate.of(2023, 12, 20), ts02, DurataAbbonamento.SETTIMANALE, rF02);
 //
-//		MezziDiTrasporto mz01 = new MezziDiTrasporto(TipoMezzi.AUTOBUS,,LocalDate.of(2022, 12, 20),);
-		
+//		
 //		UtenteDAO.save(ut01);
 //		UtenteDAO.save(ut02);
 //		
@@ -80,35 +84,29 @@ public class Runnable {
 //		TitoliDiViaggioDAO.save(bg02);
 //		TitoliDiViaggioDAO.save(ab01);
 //		TitoliDiViaggioDAO.save(ab02);
-		
-		
-		MezziDAO.saveTratta(milano_venezia);
-		MezziDAO.saveTratta(padova_torino);
-		MezziDAO.saveTratta(firenze_venezia);
-		MezziDAO.saveTratta(como_bologna);
-		MezziDAO.saveTratta(como_napoli);
-		MezziDAO.saveTratta(como_genova);
-		
-		
-		
-		MezziDAO.save(tram3);
-		MezziDAO.save(tram2);
-		MezziDAO.save(tram1);
-		MezziDAO.save(bus1);
-		MezziDAO.save(bus2);
-		MezziDAO.save(bus3);
-		
-		
-		
-		
-		
-		
+//			
+//		MezziDAO.saveTratta(milano_venezia);
+//		MezziDAO.saveTratta(padova_torino);
+//		MezziDAO.saveTratta(firenze_venezia);
+//		MezziDAO.saveTratta(como_bologna);
+//		MezziDAO.saveTratta(como_napoli);
+//		MezziDAO.saveTratta(como_genova);
+//		
+//		MezziDAO.save(tram3);
+//		MezziDAO.save(tram2);
+//		MezziDAO.save(tram1);
+//		MezziDAO.save(bus1);
+//		MezziDAO.save(bus2);
+//		MezziDAO.save(bus3);
 		
 		//<<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN TITOLODIVIAGGIO PER ID>>>>>>>>>>>>>>>>>>>
 		TitoliDiViaggioDAO.getById(1l);
 		
 		//<<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN MEZZO PER ID>>>>>>>>>>>>>>>>>>>
-		MezziDAO.getById(1l);
+		MezziDiTrasporto mz011 = MezziDAO.getById(1l);
+		
+		//<<<<<<<<<<<<<<<<<<<METODO CHE CERCA UNA TRATTA PER ID>>>>>>>>>>>>>>>>>>>
+		Tratta tr01 = MezziDAO.getTrattaById(2l);
 		
 		//<<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN VENDITORE PER ID>>>>>>>>>>>>>>>>>>>
 		Venditore ven1 =VenditoreDAO.getById(1l);
@@ -129,24 +127,13 @@ public class Runnable {
 		//<<<<<<<<<<<<<<<<<<<METODO CHE CONTA GLI ABBONAMENTI IN BASE AL VENDITORE>>>>>>>>>>>>>>>>>>>
 		TitoliDiViaggioDAO.contaAbbonamentiDaVenditore(LocalDate.of(2022, 12, 10), LocalDate.of(2023, 4, 20), ven1);
 		
+		// <<<<<<<<<<<<<<<<<<<<<METODO CHE CONTA I BIGLIETTI VIDIMATI>>>>>>>>>>>>>>>>>>>>>
+		
+		
 		Distributore v = em.find(Distributore.class, 1L);
 
-		Biglietto bg01 = new Biglietto(LocalDate.of(2021, 12, 20), false, v);
+		
 
-//		MezziDiTrasporto m = new MezziDiTrasporto();
-//
-//		MezziDAO.save(m);
-//		TitoliDiViaggioDAO.save(bg01);
-//
-//		TitoliDiViaggioDAO.vidimaBiglietto(bg01, LocalDate.now(), m);
-		
-		
-		MezziDAO.selectTratta(1);
-		
-		
-		
-		
-		
 		
 	}
 
