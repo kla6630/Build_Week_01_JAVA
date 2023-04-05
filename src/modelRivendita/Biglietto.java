@@ -1,10 +1,15 @@
 package modelRivendita;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import gestionemezzi.MezziDiTrasporto;
 
 @Entity
 //@DiscriminatorValue("Biglietto")
@@ -13,8 +18,12 @@ public class Biglietto extends TitoloDiViaggio {
 
 	private Boolean vidimato = false;
 
-	@Column(name = "data_vidimazione")
-	private LocalDate dataVidimazione;
+	@Column(name = "data_ora_vidimazione")
+	private LocalDateTime dataOraVidimazione;
+
+	@ManyToOne
+	@JoinColumn(name = "id_mezzo", nullable = true)
+	private MezziDiTrasporto mezzo;
 
 	public Biglietto() {
 
@@ -38,8 +47,17 @@ public class Biglietto extends TitoloDiViaggio {
 		this.vidimato = vidimato;
 	}
 
-	public void vidimaBiglietto(LocalDate data) throws Exception {
-		this.dataVidimazione = data;
+	public LocalDateTime getDataOraVidimazione() {
+		return dataOraVidimazione;
+	}
+
+	public void setDataOraVidimazione(LocalDateTime dataOraVidimazione) {
+		this.dataOraVidimazione = dataOraVidimazione;
+	}
+
+	public void vidimaBiglietto(LocalDateTime data, MezziDiTrasporto mezzo) throws Exception {
+		this.dataOraVidimazione = data;
+		this.mezzo = mezzo;
 		if (!this.vidimato)
 			this.vidimato = true;
 		else {
@@ -47,10 +65,8 @@ public class Biglietto extends TitoloDiViaggio {
 		}
 	}
 
-
 	@Override
 	public String toString() {
-		return "Biglietto [vidimato=" + vidimato + ", dataVidimazione = " + dataVidimazione + "]";
+		return "Biglietto [vidimato=" + vidimato + ", dataVidimazione = " + dataOraVidimazione + "]";
 	}
-
 }

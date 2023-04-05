@@ -6,13 +6,13 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 import javax.persistence.EntityManager;
+
 import dbconnection.DbConnection;
 import enums.Arrivi;
 import enums.Partenze;
 import gestionemezzi.MezziDiTrasporto;
 import gestionemezzi.Tratta;
 import modelRivendita.Biglietto;
-import modelRivendita.TitoloDiViaggio;
 
 public class MezziDAO {
 	static EntityManager em = DbConnection.getEntityManagerFactory().createEntityManager();
@@ -72,7 +72,7 @@ public class MezziDAO {
 	}
 
 	// <<<<<<<<<<<<<<<<<<<<<METODO CHE CONTA I BIGLIETTI VIDIMATI>>>>>>>>>>>>>>>>>>>>>
-	public static void vidimaBiglietto(Biglietto bi) {
+	public static void contaBigliettiVidimati(Biglietto bi) {
 		Integer numVidimati = 0;
 
 		if (bi.getVidimato()) {
@@ -80,6 +80,18 @@ public class MezziDAO {
 			bi.setVidimato(true);
 		}
 	}
+	
+	
+	// INSERIMENTO TRATTA E MEZZO DATABASE
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// SELEZIONA LA TRATTA DA ESEGUIRE
 
