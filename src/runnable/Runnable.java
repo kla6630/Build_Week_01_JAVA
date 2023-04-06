@@ -154,10 +154,6 @@ public class Runnable {
 
 		// MezziDAO.selectTratta(1);
 
-		Tessera myTessera = TesseraDAO.getById(1l);
-		TitoloDiViaggio myTv = TitoliDiViaggioDAO.getById(7l);
-		Abbonamento b = em.find(Abbonamento.class, 8L);
-
 		// TesseraDAO.verificaValidita(myTessera, b, LocalDate.of(2022, 12, 22));
 
 		TitoliDiViaggioDAO.numeroAbbonamentiUtente(1L);
