@@ -44,10 +44,6 @@ public class Tratta {
 	}
 	
 
-	public Tratta() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	public int getId() {
 		return id;

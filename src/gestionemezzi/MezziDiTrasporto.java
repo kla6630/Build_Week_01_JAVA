@@ -1,5 +1,6 @@
 package gestionemezzi;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.CascadeType;
@@ -11,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import enums.TipoMezzi;
@@ -30,14 +30,18 @@ public class MezziDiTrasporto {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+
 	@Enumerated(EnumType.STRING)
 	private TipoMezzi tipoMezzi;
+
 	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "tratta_id", referencedColumnName = "id")
 	private Tratta tratta;
+
 	private LocalTime oraPartenza;
 	private LocalTime oraArrivo;
 	private int capienza;
+	private LocalDate dataCambio;
 	private boolean servizio;
 	private int traccia;
 	
@@ -52,11 +56,6 @@ public class MezziDiTrasporto {
 		this.servizio = servizio;
 	}
 	
-	public MezziDiTrasporto() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -119,6 +118,14 @@ public class MezziDiTrasporto {
 
 	public void setTraccia(int traccia) {
 		this.traccia = traccia;
+	}
+
+	public LocalDate getDataCambio() {
+		return this.dataCambio;
+	}
+
+	public void setDataCambio(LocalDate data) {
+		this.dataCambio = data;
 	}
 	
 	@Override

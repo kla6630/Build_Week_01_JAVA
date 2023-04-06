@@ -1,5 +1,6 @@
 package utils;
 
+import java.time.LocalDate;
 //import java.sql.SQLException;
 //import java.time.Duration;
 //import java.time.LocalDate;
@@ -212,13 +213,11 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-
 import enums.Arrivi;
-import gestionemezzi.MezziDiTrasporto;
 import enums.Partenze;
 import enums.TipoMezzi;
+import gestionemezzi.MezziDiTrasporto;
 import gestionemezzi.Tratta;
-import modelRivendita.Biglietto;
 
 public class MezziDAO extends Thread {
 
@@ -228,7 +227,7 @@ public class MezziDAO extends Thread {
 	private static final EntityTransaction t = em.getTransaction();
 	
 	// INSERIMENTO MEZZI NEL DATABASE
-	public void insertMezzi(MezziDiTrasporto mezzo) {
+	public static void insertMezzi(MezziDiTrasporto mezzo) {
 
 		try {
 			MezziDiTrasporto m = mezzo;
@@ -246,7 +245,7 @@ public class MezziDAO extends Thread {
 	}
 	
 	// INSERIMENTO TRATTE NEL DATABASE
-	public void insertTratte(Tratta tratta) {
+	public static void insertTratte(Tratta tratta) {
 		
 		try {
 			Tratta tr = tratta;
@@ -421,6 +420,28 @@ public class MezziDAO extends Thread {
 		in.close();
 	}
 	
+	public static void cambioServizio(MezziDiTrasporto tr) {
+		try {
+			em.getTransaction().begin();
+			MezziDiTrasporto tra = em.find(MezziDiTrasporto.class, tr.getId());
+
+			if (tra != null) {
+				System.out.println(tra);
+				tra.setDataCambio(LocalDate.now());
+				tra.setServizio(!tra.isServizio());
+				em.getTransaction().commit();
+				System.out.println(tra);
+				System.out.println("Stato servizio cambiato");
+			} else
+				throw new Exception("Mezzo non trovato");
+
+		} catch (Exception ex) {
+			em.getTransaction().rollback();
+			System.out.println("errore cambio servizio" + ex.getMessage());
+			ex.printStackTrace();
+		}
+	}
+
 	// SI FA L'UPDATE DI QUANTE VOLTE è STATA PERCORSA UNA DETERMINATA TRATTA
 	public static void updateTraccia(MezziDiTrasporto result) {
 		t.begin();
