@@ -1,9 +1,6 @@
 package gestionemezzi;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,68 +11,64 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import enums.TipoMezzi;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import modelRivendita.Biglietto;
 
-@Table(name = "mezziditrasporto")
+
+@Table(name="mezziditrasporto")
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class MezziDiTrasporto {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-
-	@Enumerated(EnumType.STRING)
-	private TipoMezzi tipoMezzi;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "tratta_id", referencedColumnName = "id")
-	private Tratta tratta;
-
-	private LocalTime oraPartenza;
-	private LocalTime oraArrivo;
-	private boolean servizio;
-	private int traccia;
-	LocalDate dataCambio;
-
-	public MezziDiTrasporto(TipoMezzi tipoMezzi, Tratta tratta, LocalTime oraPartenza, boolean servizio) {
-		super();
-		this.tipoMezzi = tipoMezzi;
-		this.tratta = tratta;
-		this.oraPartenza = oraPartenza;
-		this.oraArrivo = oraPartenza.plusHours(tratta.getDurataTratta());
-		this.servizio = servizio;
-	}
-
-	public MezziDiTrasporto(long id, TipoMezzi tipoMezzi, Tratta tratta, LocalTime oraPartenza, LocalTime oraArrivo,
-			boolean servizio, int traccia) {
-		super();
-		this.id = id;
-		this.tipoMezzi = tipoMezzi;
-		this.tratta = tratta;
-		this.oraPartenza = oraPartenza;
-		this.oraArrivo = oraArrivo;
-		this.servizio = servizio;
-		// this.traccia = traccia;
-	}
 
 	public MezziDiTrasporto() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public LocalDate getDataCambio() {
-		return dataCambio;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
+	@Enumerated(EnumType.STRING)
+	private TipoMezzi tipoMezzi;
+	@ManyToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "tratta_id", referencedColumnName = "id")
+	private Tratta tratta;
+	private LocalTime oraPartenza;
+	private LocalTime oraArrivo;
+	private int capienza;
+	private boolean servizio;
+	private int traccia;
+	
+	public MezziDiTrasporto(TipoMezzi tipoMezzi, Tratta tratta, LocalTime oraPartenza,
+			int capienza, boolean servizio) {
+		super();
+		this.tipoMezzi = tipoMezzi;
+		this.tratta = tratta;
+		this.oraPartenza = oraPartenza;
+		this.oraArrivo = oraPartenza.plusHours(getTratta().getDurataTratta());
+		this.capienza = capienza;
+		this.servizio = servizio;
+	}
+	
+	@Override
+	public String toString() {
+		return "NumeroMezzo=" + id + ", TipoMezzo=" + tipoMezzi + ", " + tratta + " | Partenza: " + oraPartenza + ", Arrivo: " + oraArrivo + ", Servizio: " + servizio;
+		
 	}
 
-	public void setDataCambio(LocalDate dataCambio) {
-		this.dataCambio = dataCambio;
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public TipoMezzi getTipoMezzi() {
@@ -110,6 +103,14 @@ public class MezziDiTrasporto {
 		this.oraArrivo = oraArrivo;
 	}
 
+	public int getCapienza() {
+		return capienza;
+	}
+
+	public void setCapienza(int capienza) {
+		this.capienza = capienza;
+	}
+
 	public boolean isServizio() {
 		return servizio;
 	}
@@ -118,23 +119,12 @@ public class MezziDiTrasporto {
 		this.servizio = servizio;
 	}
 
-	// public int getTraccia() {
-	// return traccia;
-	// }
-	//
-	// public void setTraccia(int traccia) {
-	// this.traccia = traccia;
-	// }
-
-	public long getId() {
-		return id;
+	public int getTraccia() {
+		return traccia;
 	}
 
-	@Override
-	public String toString() {
-		return "NumeroMezzo=" + id + ", TipoMezzo=" + tipoMezzi + ", " + tratta + " | Partenza: " + oraPartenza
-				+ ", Arrivo: " + oraArrivo + ", Servizio: " + servizio;
-
+	public void setTraccia(int traccia) {
+		this.traccia = traccia;
 	}
-
+	
 }
