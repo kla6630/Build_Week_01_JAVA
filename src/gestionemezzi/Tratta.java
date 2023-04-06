@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import enums.Arrivi;
 import enums.Partenze;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -21,47 +22,44 @@ import lombok.Setter;
 @Table(name = "tratte")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Tratta {
+
+	public Tratta() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private int id;
 	
 	@Enumerated(EnumType.STRING)
 	private Partenze partenza;
 	@Enumerated(EnumType.STRING)
 	private Arrivi arrivi;
-	private Long durataTratta;
+	private int durataTratta;
 	@OneToMany(mappedBy = "tratta")
 	private List<MezziDiTrasporto> mezzo;
 	
-	public Tratta(Partenze partenza, Arrivi arrivi, Long durataTratta) {
+	public Tratta(Partenze partenza, Arrivi arrivi, int durataTratta) {
 		super();
 		this.partenza = partenza;
 		this.arrivi = arrivi;
 		this.durataTratta = durataTratta;
 	}
 	
-	public Tratta(Long id, Partenze partenza, Arrivi arrivi, Long durataTratta, List<MezziDiTrasporto> mezzo) {
-		super();
-		this.id = id;
-		this.partenza = partenza;
-		this.arrivi = arrivi;
-		this.durataTratta = durataTratta;
-		this.mezzo = mezzo;
-	}
-	
-
-	
-	public Tratta() {
-		super();
+	@Override
+	public String toString() {
+		return partenza.toString() + " - " + arrivi.toString() + ", Durata viaggio=" + durataTratta + "h";
+		
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -81,11 +79,11 @@ public class Tratta {
 		this.arrivi = arrivi;
 	}
 
-	public Long getDurataTratta() {
+	public int getDurataTratta() {
 		return durataTratta;
 	}
 
-	public void setDurataTratta(Long durataTratta) {
+	public void setDurataTratta(int durataTratta) {
 		this.durataTratta = durataTratta;
 	}
 
@@ -96,10 +94,7 @@ public class Tratta {
 	public void setMezzo(List<MezziDiTrasporto> mezzo) {
 		this.mezzo = mezzo;
 	}
-
-	@Override
-	public String toString() {
-		return partenza.toString() + " - " + arrivi.toString() + ", Durata viaggio=" + durataTratta + "h";
-		
-	}
+	
+	
+	
 }
