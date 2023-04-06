@@ -27,11 +27,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class MezziDiTrasporto {
 
-	public MezziDiTrasporto() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
@@ -57,10 +52,9 @@ public class MezziDiTrasporto {
 		this.servizio = servizio;
 	}
 	
-	@Override
-	public String toString() {
-		return "NumeroMezzo=" + id + ", TipoMezzo=" + tipoMezzi + ", " + tratta + " | Partenza: " + oraPartenza + ", Arrivo: " + oraArrivo + ", Servizio: " + servizio;
-		
+	public MezziDiTrasporto() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public long getId() {
@@ -127,4 +121,8 @@ public class MezziDiTrasporto {
 		this.traccia = traccia;
 	}
 	
+	@Override
+	public String toString() {
+		return "NumeroMezzo=" + id + ", TipoMezzo=" + tipoMezzi + ", " + tratta + " | Partenza: " + oraPartenza + ", Arrivo: " + oraArrivo + ", Servizio: " + servizio;
+	}
 }

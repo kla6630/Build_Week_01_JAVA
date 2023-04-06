@@ -40,13 +40,13 @@ public class TitoliDiViaggioDAO {
 			if (b != null) {
 				b.vidimaBiglietto(data, mezzo);
 				em.getTransaction().commit();
-				System.out.println("biglietto vidimato");
+				System.out.println("biglietto vidimato in data " + data  );
 			} else
-				throw new Exception("biglietto non trovato");
+				throw new Exception(" biglietto non trovato");
 
 		} catch (Exception ex) {
 			em.getTransaction().rollback();
-			System.out.println("errore vidima biglietto" + ex.getMessage());
+			System.out.println("errore vidima biglietto: " + ex.getMessage());
 			ex.printStackTrace();
 		}
 	}

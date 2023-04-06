@@ -17,18 +17,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
 @Table(name = "tratte")
 @Getter
 @Setter
 @NoArgsConstructor
 public class Tratta {
-
-	public Tratta() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,10 +43,10 @@ public class Tratta {
 		this.durataTratta = durataTratta;
 	}
 	
-	@Override
-	public String toString() {
-		return partenza.toString() + " - " + arrivi.toString() + ", Durata viaggio=" + durataTratta + "h";
-		
+
+	public Tratta() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
@@ -95,6 +89,10 @@ public class Tratta {
 		this.mezzo = mezzo;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return partenza.toString() + " - " + arrivi.toString() + ", Durata viaggio=" + durataTratta + "h";
+		
+	}
 	
 }

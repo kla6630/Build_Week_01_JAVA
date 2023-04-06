@@ -218,6 +218,7 @@ import gestionemezzi.MezziDiTrasporto;
 import enums.Partenze;
 import enums.TipoMezzi;
 import gestionemezzi.Tratta;
+import modelRivendita.Biglietto;
 
 public class MezziDAO extends Thread {
 
@@ -226,7 +227,7 @@ public class MezziDAO extends Thread {
 	private static final EntityManager em = emf.createEntityManager();
 	private static final EntityTransaction t = em.getTransaction();
 	
-	// INSERIMENTO MEZZI E TRATTE NEL DATABASE
+	// INSERIMENTO MEZZI NEL DATABASE
 	public void insertMezzi(MezziDiTrasporto mezzo) {
 
 		try {
@@ -243,6 +244,40 @@ public class MezziDAO extends Thread {
 			System.out.println("Errore durante l'inserimento dati mezzo");
 		}
 	}
+	
+	// INSERIMENTO TRATTE NEL DATABASE
+	public void insertTratte(Tratta tratta) {
+		
+		try {
+			Tratta tr = tratta;
+			
+			t.begin();
+			em.persist(tr);
+			t.commit();
+			
+			System.out.println("Dati tratta inseriti correttamente!");
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			System.out.println("Errore durante l'inserimento dati tratta");
+		}
+	}
+	
+	// <<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN ELEMENTO PER ID>>>>>>>>>>>>>>>>>>>
+		public static MezziDiTrasporto getById(Long id) {
+			try {
+				em.getTransaction().begin();
+				MezziDiTrasporto e = em.find(MezziDiTrasporto.class, id);
+				em.getTransaction().commit();
+				System.out.println(e);
+				return e;
+			} catch (Exception ex) {
+				em.getTransaction().rollback();
+				System.out.println("Errore di ricerca: ");
+				ex.printStackTrace();
+				return null;
+			}
+		}
 	
 	// SELEZIONA LA TRATTA DA ESEGUIRE
 	public static void selectTratta(String codice) {
@@ -389,12 +424,14 @@ public class MezziDAO extends Thread {
 	// SI FA L'UPDATE DI QUANTE VOLTE è STATA PERCORSA UNA DETERMINATA TRATTA
 	public static void updateTraccia(MezziDiTrasporto result) {
 		t.begin();
-		int tr = result.getTraccia() + 1;
-		result.setTraccia(tr);
+		MezziDiTrasporto b = em.find(MezziDiTrasporto.class, result.getId());
+		int tr = b.getTraccia() + 1;
+		b.setTraccia(tr);
+		
 		t.commit();
 		System.out.println();
-		System.out.println("➱ " + result.getTipoMezzi() + " num=" + result.getId() + " ha percorso " + result.getTraccia() + " volte la tratta " + result.getTratta().getPartenza() + " - " + result.getTratta().getArrivi());
-		System.out.println("Sei arrivato a destinazione in " + result.getTratta().getDurataTratta() + "h");
+		System.out.println("➱ " + b.getTipoMezzi() + " num=" + b.getId() + " ha percorso " + b.getTraccia() + " volte la tratta " + b.getTratta().getPartenza() + " - " + b.getTratta().getArrivi());
+		System.out.println("Sei arrivato a destinazione in " + b.getTratta().getDurataTratta() + "h");
 	}
 
 	// METODO PER SIMULARE IL VIAGGIO CON EMOJI
