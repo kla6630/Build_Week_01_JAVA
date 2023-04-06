@@ -33,7 +33,7 @@ public class Runnable {
 	public static void main(String[] args) {
 
 		//
-		 Tratta como_genova = new Tratta(Partenze.COMO, Arrivi.GENOVA, 2l);
+		  Tratta como_genova = new Tratta(Partenze.COMO, Arrivi.GENOVA, 2l);
 		 Tratta como_napoli = new Tratta(Partenze.COMO, Arrivi.NAPOLI, 4l);
 		 Tratta como_bologna = new Tratta(Partenze.COMO, Arrivi.BOLOGNA, 2l);
 		//
@@ -73,7 +73,7 @@ public class Runnable {
 		 DurataAbbonamento.SETTIMANALE, rF02);
 		//
 		//
-		 UtenteDAO.save(ut01);
+		/* UtenteDAO.save(ut01);
 		 UtenteDAO.save(ut02);
 		//
 		 TesseraDAO.save(ts01);
@@ -101,7 +101,7 @@ public class Runnable {
 		 MezziDAO.save(tram1);
 		 MezziDAO.save(bus1);
 		 MezziDAO.save(bus2);
-		 MezziDAO.save(bus3);
+		 MezziDAO.save(bus3);*/
 
 		// <<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN TITOLODIVIAGGIO PER
 		// ID>>>>>>>>>>>>>>>>>>>
@@ -119,7 +119,8 @@ public class Runnable {
 
 		// <<<<<<<<<<<<<<<<<<<METODO CHE CERCA UNA TESSERA PER ID>>>>>>>>>>>>>>>>>>>
 		Tessera myTessera = TesseraDAO.getById(1l);
-		TitoloDiViaggio myTv= TitoliDiViaggioDAO.getById(3l);
+		TitoloDiViaggio myTv= TitoliDiViaggioDAO.getById(7l);
+		Abbonamento b = em.find(Abbonamento.class, 8L);
 
 		// <<<<<<<<<<<<<<<<<<<METODO CHE CONTA I TITOLI DI VIAGGIO IN BASE AL
 		// PERIODO>>>>>>>>>>>>>>>>>>>
@@ -145,7 +146,10 @@ public class Runnable {
 		// TitoliDiViaggioDAO.vidimaBiglietto(bg01, LocalDate.now(), m);
 
 		//MezziDAO.selectTratta(1);
-		TesseraDAO.verificaValidita(myTessera, myTv, LocalDate.of(2022, 12, 22));
+		System.out.println(myTessera);
+		System.out.println(b);
+		
+		TesseraDAO.verificaValidita(myTessera, b, LocalDate.of(2022, 12, 22));
 
 	}
 

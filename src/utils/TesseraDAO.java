@@ -3,6 +3,7 @@ package utils;
 import java.time.LocalDate;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import dbconnection.DbConnection;
@@ -41,19 +42,31 @@ public class TesseraDAO {
 		
   	}
 
- 	public static void verificaValidita(Tessera tessera, TitoloDiViaggio titolo, LocalDate dataVerifica) {
+ 	public static void verificaValidita(Tessera tessera, Abbonamento ab, LocalDate dataVerifica) {
  	    try {
-	            String query = "SELECT tv FROM TitoloDiViaggio tv WHERE :dataverifica BETWEEN tv.dataEmissione AND tv.dataScadenza AND :dataVerifica BETWEEN tessera.dataAttivazione AND tessera.dataScadenza";
- 	        TypedQuery<TitoloDiViaggio> typedQuery = em.createQuery(query, TitoloDiViaggio.class);
- 	        typedQuery.setParameter("dataVerifica", dataVerifica);
- 	        typedQuery.setParameter("tessera", tessera);
- 	        typedQuery.setParameter("titolo", titolo);
- 	        TitoloDiViaggio titoloVerificato = typedQuery.getSingleResult();
+ 	    	em.getTransaction().begin();
+	            String query = "SELECT ab FROM Abbonamento ab inner join Tessere te on te.id=ab.tessera_id where :dataVerifica>te.data_attivazione and :dataVerifica<te.data_scadenza and :dataVerifica>ab.data_emissione and :dataVerifica<ab.datascadenza and te.id=:tessera_iddio";
+	        TypedQuery<Abbonamento> typedQuery = em.createQuery(query, Abbonamento.class);
+			typedQuery.setParameter("dataVerifica", dataVerifica);
+ 	        typedQuery.setParameter("tessera_iddio", tessera.getId());
+ 	        typedQuery.setParameter("abbonamento",ab);
+ 	        typedQuery.getSingleResult();
+ 	        
+ 	  		em.getTransaction().commit();
  	        System.out.println("Il titolo di viaggio in data " + dataVerifica + " è attivo.");
  	    } catch (Exception ex) {
  	        System.out.println("Il titolo di viaggio non è attivo.");
  	        ex.printStackTrace();
  	    }
  	}
-
+ 	/*SELECT tv 
+ 	 * FROM Abbonamento ab
+ 	 *  inner join Tessere te on te.id=ab.tessera_id 
+ 	 *  where :dataVerifica>te.data_attivazione 
+ 	 *  and :dataVerifica<te.data_scadenza 
+ 	 *  and :dataVerifica>ab.data_emissione 
+ 	 *  and :dataVerifica<ab.datascadenza 
+ 	 *  and te.id= :tessera_id
+*/
+ 	
 }
