@@ -32,63 +32,63 @@ public class Runnable {
 
 	public static void main(String[] args) {
 
-		//
-		  Tratta como_genova = new Tratta(Partenze.COMO, Arrivi.GENOVA, 2l);
+		
+		 Tratta como_genova = new Tratta(Partenze.COMO, Arrivi.GENOVA, 2l);
 		 Tratta como_napoli = new Tratta(Partenze.COMO, Arrivi.NAPOLI, 4l);
 		 Tratta como_bologna = new Tratta(Partenze.COMO, Arrivi.BOLOGNA, 2l);
-		//
-		//
 		 Tratta firenze_venezia = new Tratta(Partenze.FIRENZE, Arrivi.VENEZIA, 4l);
 		 Tratta padova_torino = new Tratta(Partenze.PADOVA, Arrivi.TORINO, 1l);
 		 Tratta milano_venezia = new Tratta(Partenze.MILANO, Arrivi.VENEZIA, 4l);
-		//
+	
 		 MezziDiTrasporto bus1 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_genova,LocalTime.of(10, 30), true);
 		 MezziDiTrasporto bus2 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_napoli,LocalTime.of(10, 30), false);
 		MezziDiTrasporto bus3 = new MezziDiTrasporto(TipoMezzi.AUTOBUS, como_bologna,LocalTime.of(10, 30), true);
 		 MezziDiTrasporto tram1 = new MezziDiTrasporto(TipoMezzi.AUTOBUS,firenze_venezia, LocalTime.of(11, 30), false);
 		 MezziDiTrasporto tram2 = new MezziDiTrasporto(TipoMezzi.AUTOBUS,padova_torino, LocalTime.of(10, 30), true);
 		 MezziDiTrasporto tram3 = new MezziDiTrasporto(TipoMezzi.AUTOBUS,milano_venezia, LocalTime.of(10, 30), false);
-		//
-		//
-		//
+	
+		 
 		 Distributore dist01 = new Distributore(true, "Via dei Suricati 25,Tenerife");
 		 Distributore dist02 = new Distributore(false, "Via dei Giudei 225, Otranto");
-		//
+		
 		 RivenditoreFisico rF01 = new RivenditoreFisico("Via dei Babbei 50, Salerno");
 		 RivenditoreFisico rF02 = new RivenditoreFisico("Via dei Russi 225,Mariupol");
-		//
+		
 		 Biglietto bg01 = new Biglietto(LocalDate.of(2021, 12, 20), false, dist01);
 		 Biglietto bg02 = new Biglietto(LocalDate.of(2013, 11, 23), false, dist02);
-		//
+		
 		 Utente ut01 = new Utente("Bebo", "Macis", LocalDate.of(1994, 3, 2));
 		 Utente ut02 = new Utente("Omar", "Covolo", LocalDate.of(2021, 12, 20));
-		//
-		 Tessera ts01 = new Tessera(LocalDate.of(2021, 12, 20), ut01);
+		
+		 Tessera ts01 = new Tessera(LocalDate.of(2022, 12, 20), ut01);
 		 Tessera ts02 = new Tessera(LocalDate.of(2021, 8, 20), ut02);
 		 
 		
 		 Abbonamento ab01 = new Abbonamento(LocalDate.of(2022, 12, 20), ts01,
 		 DurataAbbonamento.MENSILE, rF01);
-	     Abbonamento ab02 = new Abbonamento(LocalDate.of(2023, 12, 20), ts02,
-		 DurataAbbonamento.SETTIMANALE, rF02);
-		//
-		//
-		/* UtenteDAO.save(ut01);
+		 
+		
+	     Abbonamento ab02 = new Abbonamento(LocalDate.of(2021, 8, 20), ts02,
+		 DurataAbbonamento.MENSILE, rF02);
+	     TitoliDiViaggioDAO.save(ab02);
+		
+		
+		 /*UtenteDAO.save(ut01);
 		 UtenteDAO.save(ut02);
-		//
+		
 		 TesseraDAO.save(ts01);
 		 TesseraDAO.save(ts02);
-		//
+		
 		 VenditoreDAO.save(dist01);
 		 VenditoreDAO.save(dist02);
 		 VenditoreDAO.save(rF01);
 		 VenditoreDAO.save(rF02);
-		//
+		
 		 TitoliDiViaggioDAO.save(bg01);
 		 TitoliDiViaggioDAO.save(bg02);
 		 TitoliDiViaggioDAO.save(ab01);
 		TitoliDiViaggioDAO.save(ab02);
-		//
+		
 		 MezziDAO.saveTratta(milano_venezia);
 		 MezziDAO.saveTratta(padova_torino);
 		 MezziDAO.saveTratta(firenze_venezia);
@@ -119,8 +119,8 @@ public class Runnable {
 
 		// <<<<<<<<<<<<<<<<<<<METODO CHE CERCA UNA TESSERA PER ID>>>>>>>>>>>>>>>>>>>
 		Tessera myTessera = TesseraDAO.getById(1l);
-		TitoloDiViaggio myTv= TitoliDiViaggioDAO.getById(7l);
-		Abbonamento b = em.find(Abbonamento.class, 8L);
+		TitoloDiViaggio myTv= TitoliDiViaggioDAO.getById(1l);
+		Abbonamento b = em.find(Abbonamento.class, 49L);
 
 		// <<<<<<<<<<<<<<<<<<<METODO CHE CONTA I TITOLI DI VIAGGIO IN BASE AL
 		// PERIODO>>>>>>>>>>>>>>>>>>>
