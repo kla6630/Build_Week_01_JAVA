@@ -110,4 +110,42 @@ public class TitoliDiViaggioDAO {
 	            return 0;
 	        }
 	    }
+
+		// giorno specifico
+		public static long contaBigliettiVidimati(LocalDateTime giorno, MezziDiTrasporto mezzo) {
+			try {
+				String query = "SELECT COUNT(b) FROM Biglietto b INNER JOIN MezziDiTrasporto m ON b.mezzo = m.id WHERE b.vidimato = true AND m.id=:idMezzo AND b.dataOraVidimazione =:data ";
+				TypedQuery<Long> typedQuery = em.createQuery(query, Long.class);
+				typedQuery.setParameter("idMezzo", mezzo.getId());
+				typedQuery.setParameter("data", giorno);
+				System.out.println("il numero dei biglietti vidimati in data " + giorno + " sul mezzo  " + mezzo
+						+ " è: " + typedQuery.getSingleResult());
+				return typedQuery.getSingleResult();
+			} catch (Exception e) {
+				e.printStackTrace();
+				return 0;
+			}
+
+		}
+
+		// intervallo di date
+		public static long contaBigliettiVidimati(LocalDateTime startDate, LocalDateTime endDate,
+				MezziDiTrasporto mezzo) {
+			try {
+				String query = "SELECT COUNT(b) FROM Biglietto b INNER JOIN MezziDiTrasporto m ON b.mezzo = m.id "
+						+ "WHERE b.vidimato = true AND m.id=:idMezzo AND b.dataOraVidimazione BETWEEN :startDate AND :endDate";
+				TypedQuery<Long> typedQuery = em.createQuery(query, Long.class);
+				typedQuery.setParameter("idMezzo", mezzo.getId());
+				typedQuery.setParameter("startDate", startDate);
+				typedQuery.setParameter("endDate", endDate);
+				System.out.println("il numero dei biglietti vidimati tra la data " + startDate + " e " + endDate
+						+ " sul mezzo  " + mezzo
+						+ " è: " + typedQuery.getSingleResult());
+				return typedQuery.getSingleResult();
+			} catch (Exception e) {
+				e.printStackTrace();
+				return 0;
+			}
+			
+		}
 }
