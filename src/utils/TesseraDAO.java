@@ -45,7 +45,8 @@ public class TesseraDAO {
  	public static void verificaValidita(Tessera tessera, Abbonamento ab, LocalDate dataVerifica) {
  	    try {
  	    	em.getTransaction().begin();
-	            String query = "SELECT ab FROM Abbonamento ab inner join Tessere te on te.id=ab.tessera_id where :dataVerifica>te.data_attivazione and :dataVerifica<te.data_scadenza and :dataVerifica>ab.data_emissione and :dataVerifica<ab.datascadenza and te.id=:tessera_iddio";
+ 	    	
+ 	    	String query = "SELECT ab FROM Abbonamento ab inner join Tessere te on te.abbonamento.id=ab.tessera_id where :dataVerifica>te.data_attivazione and :dataVerifica<te.data_scadenza and :dataVerifica>ab.data_emissione and :dataVerifica<ab.datascadenza and te.id=:tessera_iddio";
 	        TypedQuery<Abbonamento> typedQuery = em.createQuery(query, Abbonamento.class);
 			typedQuery.setParameter("dataVerifica", dataVerifica);
  	        typedQuery.setParameter("tessera_iddio", tessera.getId());
