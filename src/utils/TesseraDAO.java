@@ -44,23 +44,21 @@ public class TesseraDAO {
 
 	public static boolean verificaValidita(Tessera tessera, LocalDate dataVerifica) {
 		try {
-			em.getTransaction().begin();
-			String query = "SELECT ab FROM Abbonamento ab inner join Tessera te on te.id=ab.tessera where TO_DATE(:dataVerifica,'YYYY-MM-DD') >= te.dataAttivazione "
+
+			String query = "SELECT ab FROM Abbonamento ab inner join Tessera te on te.id=ab.tessera "
+					+ "where TO_DATE(:dataVerifica,'YYYY-MM-DD') >= te.dataAttivazione "
 					+ "and TO_DATE(:dataVerifica,'YYYY-MM-DD') <= te.dataScadenza "
 					+ "and TO_DATE(:dataVerifica,'YYYY-MM-DD') >= ab.dataEmissione "
 					+ "and TO_DATE(:dataVerifica,'YYYY-MM-DD') <= ab.dataScadenza and te.id=:tessera_id";
 			TypedQuery<Abbonamento> typedQuery = em.createQuery(query, Abbonamento.class);
 			typedQuery.setParameter("dataVerifica", dataVerifica.format(DateTimeFormatter.ISO_DATE));
 			typedQuery.setParameter("tessera_id", tessera.getId());
-			em.getTransaction().commit();
-			if (typedQuery.getResultList().size() > 0) {
 
-				return true;
-			}
-
-			else {
+			if (typedQuery.getResultList().isEmpty()) {
 				return false;
 			}
+
+			return true;
 
 		} catch (Exception ex) {
 			System.out.println("Errore verifica validità.");
@@ -72,8 +70,7 @@ public class TesseraDAO {
 // <<<<<<<<<<<<<<<<<<<METODO CHE RINNOVA UNA TESSERA SCADUTA>>>>>>>>>>>>>>>>>>>
 
 	public static void rinnovoTessera(Tessera tessera) {
-		if (!verificaValidita(tessera, LocalDate.now())) {
-
+		if (tessera.getDataScadenza().isBefore(LocalDate.now()) || tessera.getDataScadenza().isEqual(LocalDate.now())) {
 			try {
 				em.getTransaction().begin();
 				Tessera nuovaTessera = new Tessera(LocalDate.now(), tessera.getUtente());

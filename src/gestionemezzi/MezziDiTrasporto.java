@@ -16,7 +16,6 @@ import javax.persistence.Table;
 
 import enums.TipoMezzi;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -24,7 +23,6 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 public class MezziDiTrasporto {
 
 	@Id

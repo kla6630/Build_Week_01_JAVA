@@ -198,7 +198,7 @@ public class Runnable {
 //			System.out.println("Il titolo di viaggio in data " + LocalDate.of(2022, 12, 20) + " è attivo.");
 //		}
 
-		TesseraDAO.rinnovoTessera(em.find(Tessera.class, 3L));
+		TesseraDAO.rinnovoTessera(em.find(Tessera.class, 1L));
 		
 
 	}

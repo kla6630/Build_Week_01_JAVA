@@ -14,14 +14,12 @@ import javax.persistence.Table;
 import enums.Arrivi;
 import enums.Partenze;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "tratte")
 @Getter
 @Setter
-@NoArgsConstructor
 public class Tratta {
 
 	@Id
