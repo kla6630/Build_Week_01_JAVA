@@ -56,6 +56,10 @@ public class MezziDiTrasporto {
 		this.servizio = servizio;
 	}
 	
+	public MezziDiTrasporto() {
+		super();
+	}
+
 	public long getId() {
 		return id;
 	}

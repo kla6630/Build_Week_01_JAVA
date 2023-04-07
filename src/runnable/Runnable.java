@@ -7,7 +7,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import gestionemezzi.MezziDiTrasporto;
 import modelRivendita.Tessera;
+import utils.MezziDAO;
 import utils.TesseraDAO;
 
 public class Runnable {
@@ -134,7 +136,6 @@ public class Runnable {
 //
 //		// <<<<<<<<<<<<<<<<<<<METODO CHE CERCA UNA TESSERA PER ID>>>>>>>>>>>>>>>>>>>
 //		Tessera myTessera = TesseraDAO.getById(1l);
-//		
 //
 //		// <<<<<<<<<<<<<<<<<<<METODO CHE CONTA I TITOLI DI VIAGGIO IN BASE AL PERIODO>>>>>>>>>>>>>>>>>>>
 //		TitoliDiViaggioDAO.contaTitoliDiViaggio(LocalDate.of(2022, 12, 10), LocalDate.of(2023, 4, 20));
@@ -152,8 +153,11 @@ public class Runnable {
 //		TitoliDiViaggioDAO.abbonamentiSingoloUtente(1L);
 //		
 //		// <<<<<<<<<<<<<<<<<<<METODO CHE TRACCIA LE TRATTE>>>>>>>>>>>>>>>>>>>
-//		MezziDiTrasporto mdz = em.find(MezziDiTrasporto.class, 1L);
+		MezziDiTrasporto mdz = em.find(MezziDiTrasporto.class, 1L);
 //		MezziDAO.updateTraccia(mdz);
+		
+		//<<<<<<<<<<<<<<<<<<<<<<< METODO CHE CAMBIA LO STATO DI SERVIO DI UN MEZZO >>>>>>>>>>>>>>>>>>>>>>>
+		MezziDAO.cambioServizio(mdz);
 //		
 //		// <<<<<<<<<<<<<<<<<<<METODO CHE VIDIMA I BIGLIETTI>>>>>>>>>>>>>>>>>>>
 //		Biglietto b01 = em.find(Biglietto.class, 2L);
@@ -165,9 +169,9 @@ public class Runnable {
 //
 //		TitoliDiViaggioDAO.save(ab);
 
-		if (TesseraDAO.verificaValidita(em.find(Tessera.class, 1L), LocalDate.of(2022, 12, 20))) {
-			System.out.println("Il titolo di viaggio in data " + LocalDate.of(2022, 12, 20) + " è attivo.");
-		}
+//		if (TesseraDAO.verificaValidita(em.find(Tessera.class, 1L), LocalDate.of(2022, 12, 20))) {
+//			System.out.println("Il titolo di viaggio in data " + LocalDate.of(2022, 12, 20) + " è attivo.");
+//		}
 
 
 	}

@@ -43,7 +43,9 @@ public class Tratta {
 		this.durataTratta = durataTratta;
 	}
 	
-
+	public Tratta() {
+		super();
+	}
 
 	public int getId() {
 		return id;
