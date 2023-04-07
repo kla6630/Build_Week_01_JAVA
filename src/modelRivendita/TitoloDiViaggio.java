@@ -58,7 +58,7 @@ public abstract class TitoloDiViaggio implements Serializable {
 
 	@Override
 	public String toString() {
-		return "TitoloDiViaggio [id=" + id + ", dataEmissione=" + dataEmissione + "]";
+		return "TitoloDiViaggio [id=" + id + ", dataEmissione=" + dataEmissione + ", venditore=" + venditore + "]";
 	}
 
 }
