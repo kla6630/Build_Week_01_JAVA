@@ -223,7 +223,7 @@ public class MezziDAO extends Thread {
 			em.getTransaction().begin();
 			
 
-			if (mezzo != null) {
+			if (em.find(MezziDiTrasporto.class, mezzo.getId()) != null) {
 				System.out.println(mezzo);
 				mezzo.setDataCambio(LocalDate.now());
 				mezzo.setServizio(!mezzo.isServizio());
@@ -269,6 +269,6 @@ public class MezziDAO extends Thread {
                 // TODO Auto-generated catch block
             }
         }
-        System.out.println();
+
 	}
 }
