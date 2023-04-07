@@ -14,22 +14,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tessere")
+@Table(name = "tessere")
 public class Tessera implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column (name="data_attivazione", nullable=false)
+
+	@Column(name = "data_attivazione", nullable = false)
 	private LocalDate dataAttivazione;
-	
-	@Column(name ="data_scadenza",nullable = false) 
+
+	@Column(name = "data_scadenza", nullable = false)
 	private LocalDate dataScadenza;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "utente_id", nullable = false)
 	private Utente utente;
-	
+
 	public Tessera() {
 		super();
 	}
@@ -37,20 +37,20 @@ public class Tessera implements Serializable {
 	public Tessera(Long id, LocalDate dataAttivazione, Utente u) {
 		super();
 		this.id = id;
-		this.dataAttivazione = dataAttivazione;		
-		this.dataScadenza=LocalDate.of(dataAttivazione.getYear()+1, dataAttivazione.getMonth(),dataAttivazione.getDayOfMonth());
+		this.dataAttivazione = dataAttivazione;
+		this.dataScadenza = LocalDate.of(dataAttivazione.getYear() + 1, dataAttivazione.getMonth(),
+				dataAttivazione.getDayOfMonth());
 		this.utente = u;
 	}
 
 	public Tessera(LocalDate dataAttivazione, Utente u) {
 		super();
 		this.dataAttivazione = dataAttivazione;
-		this.dataScadenza=LocalDate.of(dataAttivazione.getYear()+1, dataAttivazione.getMonth(),dataAttivazione.getDayOfMonth());
+		this.dataScadenza = LocalDate.of(dataAttivazione.getYear() + 1, dataAttivazione.getMonth(),
+				dataAttivazione.getDayOfMonth());
 		this.utente = u;
 	}
-	
 
-	
 	public LocalDate getDataAttivazione() {
 		return dataAttivazione;
 	}
@@ -71,11 +71,15 @@ public class Tessera implements Serializable {
 		return id;
 	}
 
+	public Utente getUtente() {
+		return utente;
+
+	}
+
 	@Override
 	public String toString() {
 		return "Tessera [id=" + id + ", dataAttivazione=" + dataAttivazione + ", dataScadenza=" + dataScadenza
 				+ ", utente=" + utente + "]";
 	}
-
 
 }

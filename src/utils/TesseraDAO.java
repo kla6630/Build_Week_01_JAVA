@@ -45,28 +45,49 @@ public class TesseraDAO {
 	public static boolean verificaValidita(Tessera tessera, LocalDate dataVerifica) {
 		try {
 			em.getTransaction().begin();
-			String query = "SELECT ab FROM Abbonamento ab inner join Tessera te on te.id=ab.tessera where TO_DATE(:dataVerifica,'YYYY-MM-DD') >= te.dataAttivazione and TO_DATE(:dataVerifica,'YYYY-MM-DD') <= te.dataScadenza and   TO_DATE(:dataVerifica,'YYYY-MM-DD') >= ab.dataEmissione and TO_DATE(:dataVerifica,'YYYY-MM-DD') <= ab.dataScadenza and te.id=:tessera_id";
+			String query = "SELECT ab FROM Abbonamento ab inner join Tessera te on te.id=ab.tessera where TO_DATE(:dataVerifica,'YYYY-MM-DD') >= te.dataAttivazione "
+					+ "and TO_DATE(:dataVerifica,'YYYY-MM-DD') <= te.dataScadenza "
+					+ "and TO_DATE(:dataVerifica,'YYYY-MM-DD') >= ab.dataEmissione "
+					+ "and TO_DATE(:dataVerifica,'YYYY-MM-DD') <= ab.dataScadenza and te.id=:tessera_id";
 			TypedQuery<Abbonamento> typedQuery = em.createQuery(query, Abbonamento.class);
 			typedQuery.setParameter("dataVerifica", dataVerifica.format(DateTimeFormatter.ISO_DATE));
 			typedQuery.setParameter("tessera_id", tessera.getId());
-			typedQuery.getSingleResult();
-
 			em.getTransaction().commit();
+			if (typedQuery.getResultList().size() > 0) {
 
-			return true;
+				return true;
+			}
+
+			else {
+				return false;
+			}
+
 		} catch (Exception ex) {
-			System.out.println("Il titolo di viaggio non è attivo.");
+			System.out.println("Errore verifica validità.");
 			ex.printStackTrace();
 			return false;
 		}
 	}
-	/*
-	 * String query = "SELECT ab FROM Abbonamento ab "
-	 * + "inner join Tessera te on te.id=ab.tessera "
-	 * + "where :dataVerifica>te.dataAttivazione and"
-	 * + " :dataVerifica<te.dataScadenza and"
-	 * + " :dataVerifica>ab.dataEmissione and"
-	 * + " :dataVerifica<ab.dataScadenza ";
-	 */
+
+// <<<<<<<<<<<<<<<<<<<METODO CHE RINNOVA UNA TESSERA SCADUTA>>>>>>>>>>>>>>>>>>>
+
+	public static void rinnovoTessera(Tessera tessera) {
+		if (!verificaValidita(tessera, LocalDate.now())) {
+
+			try {
+				em.getTransaction().begin();
+				Tessera nuovaTessera = new Tessera(LocalDate.now(), tessera.getUtente());
+				em.persist(nuovaTessera);
+				em.getTransaction().commit();
+				System.out.println("Tessera rinnovata");
+
+			} catch (Exception ex) {
+				System.out.println("Errore nel rinnovo della tessera");
+				ex.printStackTrace();
+			}
+		} else {
+			System.out.println("La tessera è ancora attiva");
+		}
+	}
 
 }
