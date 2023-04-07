@@ -6,7 +6,6 @@ import java.time.LocalTime;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import enums.Arrivi;
@@ -33,8 +32,6 @@ public class Runnable {
 	private static final String Runnable = "trasporti_db";
 	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory(Runnable);
 	private static final EntityManager em = emf.createEntityManager();
-	private static final EntityTransaction t = em.getTransaction();
-
 	public static void main(String[] args) {
 
 		System.out.println("Buongiorno, benvenuto in Azienda trasporti");
