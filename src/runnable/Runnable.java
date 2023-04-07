@@ -39,69 +39,48 @@ public class Runnable {
 
 		System.out.println("Buongiorno, benvenuto in Azienda trasporti");
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		popolaTabellaTrattaEmezzi();
+		popolaTabellaVenditori();
+		popolaTabellaUtente();
+
 		Tessera ts01 = new Tessera(LocalDate.of(2021, 12, 20), UtenteDAO.getById(1l));
 		Tessera ts02 = new Tessera(LocalDate.of(2021, 8, 20), UtenteDAO.getById(2l));
 		
 		// <<<<<<<<<<<<<<<<<<<<<<<<<< CREAZIONE ABBONAMENTI >>>>>>>>>>>>>>>>>>>>>>>>>>
 		Abbonamento ab02 = new Abbonamento(LocalDate.of(2023, 12, 20), ts02, DurataAbbonamento.SETTIMANALE, VenditoreDAO.getById(1l));
 		Abbonamento ab01 = new Abbonamento(LocalDate.of(2022, 12, 20), ts01, DurataAbbonamento.MENSILE, VenditoreDAO.getById(2l));
-		Biglietto bg01 = new Biglietto(LocalDate.of(2021, 12, 20), false, VenditoreDAO.getById(1l));
-		Biglietto bg02 = new Biglietto(LocalDate.of(2013, 11, 23), false, VenditoreDAO.getById(2l));
+		Biglietto bg01 = new Biglietto(LocalDate.of(2021, 12, 20), VenditoreDAO.getById(1l));
+		Biglietto bg02 = new Biglietto(LocalDate.of(2013, 11, 23), VenditoreDAO.getById(2l));
+		Biglietto bg03 = new Biglietto(LocalDate.of(2022, 8, 15), VenditoreDAO.getById(1l));
+		Biglietto bg04 = new Biglietto(LocalDate.of(2023, 2, 3), VenditoreDAO.getById(2l));
 
 		TesseraDAO.save(ts01);
 		TesseraDAO.save(ts02);
-
-
 		TitoliDiViaggioDAO.save(bg01);
 		TitoliDiViaggioDAO.save(bg02);
+		TitoliDiViaggioDAO.save(bg03);
+		TitoliDiViaggioDAO.save(bg04);
 		TitoliDiViaggioDAO.save(ab01);
 		TitoliDiViaggioDAO.save(ab02);
-		
-			
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
 
 
 		// <<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN TITOLODIVIAGGIO PER ID>>>>>>>>>>>>>>>>>>>
-		System.out.println("il titolo di viaggio con id 1 è:"+ TitoliDiViaggioDAO.getById(1l));
+		TitoliDiViaggioDAO.getById(1l);
 		
 		// <<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN MEZZO PER ID>>>>>>>>>>>>>>>>>>>
-		System.out.println("il mezzo con id 1 è:"+ MezziDAO.getById(1l));
+		MezziDAO.getById(1l);
 
 		// <<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN VENDITORE PER ID>>>>>>>>>>>>>>>>>>>
-		System.out.println("il venditorecon id 1 è:"+ VenditoreDAO.getById(1l));
+		VenditoreDAO.getById(1l);
 
 		// <<<<<<<<<<<<<<<<<<<METODO CHE CERCA UN UTENTE PER ID>>>>>>>>>>>>>>>>>>>
-		System.out.println("l'utente id 1 è:"+ UtenteDAO.getById(1l));
+		UtenteDAO.getById(1l);
 
 		// <<<<<<<<<<<<<<<<<<<METODO CHE CERCA UNA TESSERA PER ID>>>>>>>>>>>>>>>>>>>
-		System.out.println("il venditorecon id 1 è:"+ TesseraDAO.getById(1l));
+		TesseraDAO.getById(1l);
 
 		// <<<<<<<<<<<<<<<<<<<METODO CHE CONTA I TITOLI DI VIAGGIO IN BASE AL PERIODO>>>>>>>>>>>>>>>>>>>
-		System.out.println("il numero dei titoli di viaggio nel periodo :"+ 
-		TitoliDiViaggioDAO.contaTitoliDiViaggio(LocalDate.of(2022, 12, 10), LocalDate.of(2023, 4, 20)));
+		TitoliDiViaggioDAO.contaTitoliDiViaggio(LocalDate.of(2022, 12, 10), LocalDate.of(2023, 4, 20));
 
 		// <<<<<<<<<<<<<<<<<<<METODO CHE CONTA I BIGLIETTI IN BASE AL VENDITORE>>>>>>>>>>>>>>>>>>>
 		TitoliDiViaggioDAO.contaBigliettiDaVenditore(LocalDate.of(2013, 11, 23), LocalDate.of(2023, 5, 20), VenditoreDAO.getById(1l));
@@ -124,8 +103,9 @@ public class Runnable {
 		MezziDAO.cambioServizio(mdz);
 
 		// <<<<<<<<<<<<<<<<<<<METODO CHE VIDIMA I BIGLIETTI>>>>>>>>>>>>>>>>>>>
-		Biglietto b04 = em.find(Biglietto.class, 1L);
-		TitoliDiViaggioDAO.vidimaBiglietto(b04, LocalDateTime.of(2022, 4, 20, 4, 0), mdz);
+
+		TitoliDiViaggioDAO.vidimaBiglietto(em.find(Biglietto.class, 1L), LocalDateTime.of(2023, 4, 20, 4, 0), mdz);
+		TitoliDiViaggioDAO.vidimaBiglietto(em.find(Biglietto.class, 2L), LocalDateTime.of(2023, 4, 10, 16, 0), mdz);
 
 		// <<<<<<<<<<<<<<<<<<<METODI CHE CONTANO IL NUMERO DEI BIGLIETTI VIDIMATI TOTALI
 		// E IN UN DETERMINATO PERIODO >>>>>>>>>>>>>>>>>>>
@@ -134,11 +114,10 @@ public class Runnable {
 		TitoliDiViaggioDAO.contaBigliettiVidimatiPeriodoSpecifico(LocalDateTime.of(2023, 4, 19, 4, 0),
 				LocalDateTime.of(2023, 4, 22, 4, 0), mdz);
 		
-		// <<<<<<<<<<<<<<<<<<<METODO CHE VERIFICA VALIDITà TESSERA>>>>>>>>>>>>>>>>>>>
+		// <<<<<<<<<<<<<<<<<<<METODO CHE VERIFICA VALIDITA' TESSERA>>>>>>>>>>>>>>>>>>>
 		Abbonamento ab = new Abbonamento(LocalDate.of(2022, 12, 20), em.find(Tessera.class, 1L),
 				DurataAbbonamento.MENSILE, em.find(Venditore.class, 1L));
-
-		TitoliDiViaggioDAO.save(ab);
+//		TitoliDiViaggioDAO.save(ab);
 
 		if (TesseraDAO.verificaValidita(em.find(Tessera.class, 1L), LocalDate.of(2022, 12, 20))) {
 			System.out.println("Il titolo di viaggio in data " + LocalDate.of(2022, 12, 20) + " è attivo.");
@@ -146,12 +125,10 @@ public class Runnable {
 
 		TesseraDAO.rinnovoTessera(em.find(Tessera.class, 1L));
 		
-
 	}
 	
-	public void popolaTabellaTrattaEmezzi() {
-		
-		
+	public static void popolaTabellaTrattaEmezzi() {
+
 		Tratta como_bologna = new Tratta(Partenze.COMO, Arrivi.BOLOGNA, 2);
 		Tratta como_genova = new Tratta(Partenze.COMO, Arrivi.GENOVA, 3);
 		Tratta como_napoli = new Tratta(Partenze.COMO, Arrivi.NAPOLI, 5);
@@ -199,9 +176,9 @@ public class Runnable {
 		MezziDAO.insertMezzi(tram4);
 		MezziDAO.insertMezzi(tram5);
 			
-		
 	}
-public void popolaTabellaVenditori() {
+
+	public static void popolaTabellaVenditori() {
 	
 	Distributore dist01 = new Distributore(true, "Via dei Suricati 25,Tenerife");
 	Distributore dist02 = new Distributore(false, "Via dei Giudei 225, Otranto");
@@ -209,22 +186,20 @@ public void popolaTabellaVenditori() {
 	RivenditoreFisico rF01 = new RivenditoreFisico("Via dei Babbei 50, Salerno");
 	RivenditoreFisico rF02 = new RivenditoreFisico("Via da me 225 MariaTeresaCity");
 
-	
-
 	VenditoreDAO.save(dist01);
 	VenditoreDAO.save(dist02);
 	VenditoreDAO.save(rF01);
 	VenditoreDAO.save(rF02);
 		
-		
 	}
 
 
-public void popolaTabellaUtente() {
+	public static void popolaTabellaUtente() {
 	Utente ut01 = new Utente("Bebo", "Macis", LocalDate.of(1994, 3, 2));
 	Utente ut02 = new Utente("Omar", "Covolo", LocalDate.of(2021, 12, 20));
 	UtenteDAO.save(ut01);
 	UtenteDAO.save(ut02);
 
 }
+
 }

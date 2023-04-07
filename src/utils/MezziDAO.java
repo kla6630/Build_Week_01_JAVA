@@ -26,7 +26,6 @@ public class MezziDAO extends Thread {
 	
 	// INSERIMENTO MEZZI NEL DATABASE
 	public static void insertMezzi(MezziDiTrasporto mezzo) {
-
 		try {
 			MezziDiTrasporto m = mezzo;
 
@@ -66,7 +65,7 @@ public class MezziDAO extends Thread {
 				em.getTransaction().begin();
 				MezziDiTrasporto e = em.find(MezziDiTrasporto.class, id);
 				em.getTransaction().commit();
-				System.out.println(e);
+				System.out.println("il mezzo con id " + id + " e': " + e);
 				return e;
 			} catch (Exception ex) {
 				em.getTransaction().rollback();
@@ -219,18 +218,19 @@ public class MezziDAO extends Thread {
 	}
 	
 	//<<<<<<<<<<<<<<<<<<<<<<< METODO CHE CAMBIA LO STATO DI SERVIO DI UN MEZZO >>>>>>>>>>>>>>>>>>>>>>>
-	public static void cambioServizio(MezziDiTrasporto tr) {
+	public static void cambioServizio(MezziDiTrasporto mezzo) {
 		try {
 			em.getTransaction().begin();
 			
 
-			if (tr != null) {
-				System.out.println(tr);
-				tr.setDataCambio(LocalDate.now());
-				tr.setServizio(!tr.isServizio());
+			if (mezzo != null) {
+				System.out.println(mezzo);
+				mezzo.setDataCambio(LocalDate.now());
+				mezzo.setServizio(!mezzo.isServizio());
 				em.getTransaction().commit();
-				System.out.println(tr);
-				System.out.println("Stato servizio cambiato");
+				System.out.println(mezzo);
+				System.out.println(
+						"Stato servizio cambiato in " + (mezzo.isServizio() ? "in servizio" : "fuori servizio"));
 			} else
 				throw new Exception("Mezzo non trovato");
 
@@ -244,14 +244,15 @@ public class MezziDAO extends Thread {
 	// SI FA L'UPDATE DI QUANTE VOLTE è STATA PERCORSA UNA DETERMINATA TRATTA
 	public static void updateTraccia(MezziDiTrasporto result) {
 		t.begin();
-		MezziDiTrasporto b = em.find(MezziDiTrasporto.class, result.getId());
-		int tr = b.getTraccia() + 1;
-		b.setTraccia(tr);
+		MezziDiTrasporto mezzo = em.find(MezziDiTrasporto.class, result.getId());
+		
+		int tr = mezzo.getTraccia() + 1;
+		mezzo.setTraccia(tr);
 		
 		t.commit();
-		System.out.println();
-		System.out.println("➱ " + b.getTipoMezzi() + " num=" + b.getId() + " ha percorso " + b.getTraccia() + " volte la tratta " + b.getTratta().getPartenza() + " - " + b.getTratta().getArrivi());
-		System.out.println("Sei arrivato a destinazione in " + b.getTratta().getDurataTratta() + "h");
+		System.out.println("➱ " + mezzo.getTipoMezzi() + " num=" + mezzo.getId() + " ha percorso " + mezzo.getTraccia()
+				+ " volte la tratta " + mezzo.getTratta().getPartenza() + " - " + mezzo.getTratta().getArrivi());
+		System.out.println("Sei arrivato a destinazione in " + mezzo.getTratta().getDurataTratta() + "h");
 	}
 
 	// METODO PER SIMULARE IL VIAGGIO CON EMOJI

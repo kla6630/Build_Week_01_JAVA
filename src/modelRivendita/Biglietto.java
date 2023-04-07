@@ -29,21 +29,19 @@ public class Biglietto extends TitoloDiViaggio {
 
 	}
 
-	public Biglietto(LocalDate dataEmissione, Boolean vidimato, Venditore venditore) {
+	public Biglietto(LocalDate dataEmissione, Venditore venditore) {
 		super(dataEmissione, venditore);
-		this.vidimato = vidimato;
 	}
 
-	public Biglietto(Long id, LocalDate dataEmissione, Boolean vidimato, Venditore venditore) {
+	public Biglietto(Long id, LocalDate dataEmissione, Venditore venditore) {
 		super(id, dataEmissione, venditore);
-		this.vidimato = vidimato;
 	}
 
 	public Boolean getVidimato() {
 		return vidimato;
 	}
 
-	public void setVidimato(Boolean vidimato) {
+	private void setVidimato(Boolean vidimato) {
 		this.vidimato = vidimato;
 	}
 
@@ -59,7 +57,7 @@ public class Biglietto extends TitoloDiViaggio {
 		this.dataOraVidimazione = data;
 		this.mezzo = mezzo;
 		if (!this.vidimato)
-			this.vidimato = true;
+			setVidimato(true);
 		else {
 			throw new Exception("biglietto già vidimato");
 		}

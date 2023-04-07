@@ -31,7 +31,7 @@ public class TesseraDAO {
 			em.getTransaction().begin();
 			Tessera e = em.find(Tessera.class, id);
 			em.getTransaction().commit();
-			System.out.println(e);
+			System.out.println("la Tessera con id " + id + " e': " + e);
 			return e;
 		} catch (Exception ex) {
 			em.getTransaction().rollback();

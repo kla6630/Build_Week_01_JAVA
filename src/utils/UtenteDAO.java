@@ -28,7 +28,7 @@ public class UtenteDAO {
   		em.getTransaction().begin();
   		Utente e = em.find(Utente.class, id);
   		em.getTransaction().commit();
-  		System.out.println(e);
+		System.out.println("l'utente con id " + id + " e': " + e);
   		return e;
     	} catch (Exception ex) {
 			em.getTransaction().rollback();

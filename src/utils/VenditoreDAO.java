@@ -29,7 +29,7 @@ public class VenditoreDAO {
   		em.getTransaction().begin();
   		Venditore e = em.find(Venditore.class, id);
   		em.getTransaction().commit();
-  		System.out.println(e);
+		System.out.println("il venditore con id " + id + " e': " + e);
   		return e;
     	} catch (Exception ex) {
 			em.getTransaction().rollback();
