@@ -67,8 +67,7 @@ public class TitoliDiViaggioDAO {
 		}
 	}
 
-	// <<<<<<<<<<<<<<<<<<<METODO CHE CONTA I TITOLI DI VIAGGIO IN BASE AL
-	// PERIODO>>>>>>>>>>>>>>>>>>>
+	// <<<<<<<<<<<<<<<<<<<METODO CHE CONTA I TITOLI DI VIAGGIO IN BASE AL PERIODO>>>>>>>>>>>>>>>>>>>
 	public static long contaTitoliDiViaggio(LocalDate startDate, LocalDate endDate) {
 		try {
 			String query = "SELECT COUNT(tv) FROM TitoloDiViaggio tv WHERE tv.dataEmissione BETWEEN :startDate AND :endDate";
@@ -84,8 +83,7 @@ public class TitoliDiViaggioDAO {
 		}
 	}
 
-	// <<<<<<<<<<<<<<<<<<<METODO CHE CONTA I BIGLIETTI IN BASE AL
-	// VENDITORE>>>>>>>>>>>>>>>>>>>
+	// <<<<<<<<<<<<<<<<<<<METODO CHE CONTA I BIGLIETTI IN BASE AL VENDITORE>>>>>>>>>>>>>>>>>>>
 	public static long contaBigliettiDaVenditore(LocalDate startDate, LocalDate endDate, Venditore venditore) {
 		try {
 			String query = "SELECT COUNT(b) FROM Biglietto b WHERE b.dataEmissione BETWEEN :startDate AND :endDate AND b.venditore = :venditore";
@@ -102,8 +100,7 @@ public class TitoliDiViaggioDAO {
 		}
 	}
 
-	// <<<<<<<<<<<<<<<<<<<METODO CHE CONTA GLI ABBONAMENTI IN BASE AL
-	// VENDITORE>>>>>>>>>>>>>>>>>>>
+	// <<<<<<<<<<<<<<<<<<<METODO CHE CONTA GLI ABBONAMENTI IN BASE AL VENDITORE>>>>>>>>>>>>>>>>>>>
 	public static long contaAbbonamentiDaVenditore(LocalDate startDate, LocalDate endDate, Venditore venditore) {
 		try {
 			String query = "SELECT COUNT(a) FROM Abbonamento a WHERE a.dataEmissione BETWEEN :startDate AND :endDate AND a.venditore = :venditore";
@@ -120,8 +117,8 @@ public class TitoliDiViaggioDAO {
 		}
 	}
 
-	// giorno specifico
-	public static long contaBigliettiVidimati(LocalDateTime giorno, MezziDiTrasporto mezzo) {
+	// <<<<<<<<<<<<<<<<<<<METODO CHE CONTA IL NUMERO DEI BIGLIETTI VIDIMATI TOTALI IN UN DETERMINATO PERIODO >>>>>>>>>>>>>>>>>>>
+	public static long contaBigliettiVidimatiOraSpecifica(LocalDateTime giorno, MezziDiTrasporto mezzo) {
 		try {
 			String query = "SELECT COUNT(b) FROM Biglietto b INNER JOIN MezziDiTrasporto m ON b.mezzo = m.id WHERE b.vidimato = true AND m.id=:idMezzo AND b.dataOraVidimazione =:data ";
 			TypedQuery<Long> typedQuery = em.createQuery(query, Long.class);
@@ -136,9 +133,24 @@ public class TitoliDiViaggioDAO {
 		}
 
 	}
+	
+	// <<<<<<<<<<<<<<<<<<<METODO CHE CONTA IL NUMERO DEI BIGLIETTI VIDIMATI TOTALI >>>>>>>>>>>>>>>>>>>
+	public static long contaBigliettiVidimatiTotali( MezziDiTrasporto mezzo) {
+		try {
+			String query = "SELECT COUNT(b) FROM Biglietto b INNER JOIN MezziDiTrasporto m ON b.mezzo = m.id WHERE b.vidimato = true AND m.id=:idMezzo";
+			TypedQuery<Long> typedQuery = em.createQuery(query, Long.class);
+			typedQuery.setParameter("idMezzo", mezzo.getId());
+			System.out.println("il numero dei biglietti vidimati sul mezzo  " + mezzo + " è: "
+					+ typedQuery.getSingleResult());
+			return typedQuery.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
 
 	// intervallo di date
-	public static long contaBigliettiVidimati(LocalDateTime startDate, LocalDateTime endDate, MezziDiTrasporto mezzo) {
+	public static long contaBigliettiVidimatiPeriodoSpecifico(LocalDateTime startDate, LocalDateTime endDate, MezziDiTrasporto mezzo) {
 		try {
 			String query = "SELECT COUNT(b) FROM Biglietto b INNER JOIN MezziDiTrasporto m ON b.mezzo = m.id "
 					+ "WHERE b.vidimato = true AND m.id=:idMezzo AND b.dataOraVidimazione BETWEEN :startDate AND :endDate";
@@ -156,8 +168,7 @@ public class TitoliDiViaggioDAO {
 
 	}
 
-	// <<<<<<<<<<<<<<<<<<<METODO CHE RESTITUISCE IL NUMERO DEGLI ABBONAMENTI IN BASE
-	// ALL UTENTE>>>>>>>>>>>>>>>>>>>
+	// <<<<<<<<<<<<<<<<<<<METODO CHE RESTITUISCE IL NUMERO DEGLI ABBONAMENTI IN BASE ALL' UTENTE>>>>>>>>>>>>>>>>>>>
 
 	public static Long numeroAbbonamentiUtente(Long Id_utente) {
 		try {
@@ -173,8 +184,7 @@ public class TitoliDiViaggioDAO {
 		}
 	}
 
-	// <<<<<<<<<<<<<<<<<<<METODO CHE RESTITUISCE TUTTI GLI ABBONAMENTI DI UN SINGOLO
-	// UTENTE>>>>>>>>>>>>>>>>>>>
+	// <<<<<<<<<<<<<<<<<<<METODO CHE RESTITUISCE TUTTI GLI ABBONAMENTI DI UN SINGOLO UTENTE>>>>>>>>>>>>>>>>>>>
 
 	public static List<Abbonamento> abbonamentiSingoloUtente(Long Id_utente) {
 		try {

@@ -1,6 +1,7 @@
 package runnable;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,9 +9,11 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import gestionemezzi.MezziDiTrasporto;
+import modelRivendita.Biglietto;
 import modelRivendita.Tessera;
 import utils.MezziDAO;
 import utils.TesseraDAO;
+import utils.TitoliDiViaggioDAO;
 
 public class Runnable {
 	
@@ -157,12 +160,17 @@ public class Runnable {
 //		MezziDAO.updateTraccia(mdz);
 		
 		//<<<<<<<<<<<<<<<<<<<<<<< METODO CHE CAMBIA LO STATO DI SERVIO DI UN MEZZO >>>>>>>>>>>>>>>>>>>>>>>
-		MezziDAO.cambioServizio(mdz);
-//		
+//		MezziDAO.cambioServizio(mdz);
+		
 //		// <<<<<<<<<<<<<<<<<<<METODO CHE VIDIMA I BIGLIETTI>>>>>>>>>>>>>>>>>>>
-//		Biglietto b01 = em.find(Biglietto.class, 2L);
-//		TitoliDiViaggioDAO.vidimaBiglietto(b01, LocalDateTime.of(2023, 4, 20, 4, 0), mdz);
+//		Biglietto b04 = em.find(Biglietto.class, 9L);
+//		TitoliDiViaggioDAO.vidimaBiglietto(b04, LocalDateTime.of(2022, 4, 20, 4, 0), mdz);
 
+		// <<<<<<<<<<<<<<<<<<<METODI CHE CONTANO IL NUMERO DEI BIGLIETTI VIDIMATI TOTALI E IN UN DETERMINATO PERIODO >>>>>>>>>>>>>>>>>>>
+		TitoliDiViaggioDAO.contaBigliettiVidimatiTotali(mdz);
+		TitoliDiViaggioDAO.contaBigliettiVidimatiOraSpecifica(LocalDateTime.of(2023, 4, 20, 4, 0), mdz);
+		TitoliDiViaggioDAO.contaBigliettiVidimatiPeriodoSpecifico(LocalDateTime.of(2023, 4, 19, 4, 0), LocalDateTime.of(2023, 4, 22, 4, 0), mdz);
+//		
 //		// <<<<<<<<<<<<<<<<<<<METODO CHE VERIFICA VALIDITà TESSERA>>>>>>>>>>>>>>>>>>>
 //		Abbonamento ab = new Abbonamento(LocalDate.of(2022, 12, 20), em.find(Tessera.class, 1L),
 //				DurataAbbonamento.MENSILE, em.find(Venditore.class, 1L));
